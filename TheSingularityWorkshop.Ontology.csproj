@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageId>TheSingularityWorkshop.Ontology</PackageId>
+    <Version>0.1.0-alpha.1</Version>
+    <Authors>TheSingularityWorkshop</Authors>
+    <Company>The Singularity Workshop</Company>
+    <Description>Independent ontology definitions, semantic addresses, relationships, and interoperable ontology composition.</Description>
+    <PackageTags>ontology;semantic-address;microbundle;composition;knowledge-model</PackageTags>
+    <RepositoryUrl>https://github.com/TrentBest/TheSingularityWorkshop.Ontology</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TheSingularityWorkshop.MicroBundleDomain" Version="1.0.1" />
+  </ItemGroup>
+</Project>
