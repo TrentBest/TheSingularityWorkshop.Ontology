@@ -6,7 +6,7 @@ The package sits above the generic MicroBundle mechanism and beside application/
 
 ## Boundary map
 
-````text
+```text
 MicroBundleDomain
        |
        +---- Ontology ---- semantic definitions
@@ -14,7 +14,7 @@ MicroBundleDomain
        +---- Domain MicroBundles ---- application meaning
 
 FSM_COS composes the resulting pieces without owning their ontology.
-````
+```
 
 | Concern | Owner | Ontology dependency |
 |---|---|---|
@@ -27,7 +27,7 @@ FSM_COS composes the resulting pieces without owning their ontology.
 
 ## Semantic resolution flow
 
-````text
+```text
                  EXPERIENCE / APPLICATION
                            |
                            v
@@ -49,33 +49,59 @@ FSM_COS composes the resulting pieces without owning their ontology.
                            v
                       manifestation
                  (behavior / UI / render)
-````
+```
 
 The important boundary is that the semantic address does not itself contain the implementation. It identifies meaning. A relationship can connect that meaning to an implementation owned elsewhere.
+
+## N-dimensional indexing
+
+OntologyIndex is the compact semantic coordinate.
+
+The default form is scalar:
+
+```text
+OntologyIndex(42)
+```
+
+A domain can choose N-dimensional coordinates:
+
+```text
+OntologyIndex.Create(2, 14, 7, 3)
+```
+
+For a dense space, OntologyIndexSpace additionally describes dimension extents and maps coordinates to linear offsets. Its Cardinality is calculated with arbitrary precision so the size of the theoretical space is not limited by the size of the integer used for an individual coordinate.
+
+This gives three separate concepts:
+
+1. **coordinate** — where something is in semantic N-space;
+2. **cardinality** — how many coordinates the declared space can contain;
+3. **linear offset** — an optional storage-oriented representation for dense arrays.
+
+The package intentionally does not require that a semantic address ever be flattened or stored densely.
 
 ## Example: fish locomotion
 
 A hypothetical ontology can declare:
 
-````text
+```text
 ontology://100/1.0.0/life/animal/fish
     |
     +-- locomotion
           |
           +-- swim
-````
+```
 
 A separate rendering or animation ontology can declare:
 
-````text
+```text
 ontology://200/1.0.0/animation/swim
-````
+```
 
 A relationship can connect them:
 
-````text
+```text
 fish/swim  --manifests-as-->  animation/swim
-````
+```
 
 The fish ontology does not need to know how the animation is rendered, and the renderer does not need to encode the animal taxonomy.
 
@@ -83,7 +109,7 @@ The fish ontology does not need to know how the animation is rendered, and the r
 
 The architecture supports intentionally different structures:
 
-````text
+```text
 Application A                  Application B
      |                              |
   5 layers                      9 layers
@@ -93,29 +119,37 @@ Application A                  Application B
      +---------------+--------------+
                      |
                  same runtime
-````
+```
 
 An application may also use no ontology:
 
-````text
+```text
 MicroBundleDomain
        |
        +---- application content
-````
+```
 
 This is a feature, not an incomplete state.
 
 ## Evolution
 
-The package should grow from demonstrated use cases.
-
 The preferred progression is:
 
 1. stable identity and versioning;
 2. semantic addressing;
-3. explicit relationships;
-4. composition and mapping contracts proven by real applications;
-5. optional tooling and visualization;
-6. richer reasoning only when an actual consumer requires it.
+3. scalar and N-dimensional indexing;
+4. explicit address-space mathematics;
+5. explicit relationships and cross-ontology mappings;
+6. composition and mapping contracts proven by real applications;
+7. optional tooling and visualization;
+8. richer reasoning only when an actual consumer requires it.
 
 That keeps the core small while leaving room for the larger Singularity Workshop semantic model.
+
+## Related reading
+
+- [Theory](THEORY.md)
+- [Address-Space Mathematics](MATHEMATICS.md)
+- [Ontology boundary visual](ontology-boundary.svg)
+- [Semantic resolution visual](semantic-resolution.svg)
+- [Address-space visual](address-space.svg)
