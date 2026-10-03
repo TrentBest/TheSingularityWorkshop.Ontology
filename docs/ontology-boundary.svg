@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Ontology architectural boundary</title>
+  <desc id="desc">MicroBundleDomain provides the generic mechanism. Ontology adds optional semantic structure. Multiple ontologies and application content can coexist. FSM COS composes them without hard coding their meaning.</desc>
+  <rect width="1200" height="720" fill="#0b1020"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#f4f7fb">
+    <text x="600" y="55" text-anchor="middle" font-size="32" font-weight="700">Ontology: semantic structure without semantic constraint</text>
+    <text x="600" y="88" text-anchor="middle" font-size="17" opacity=".8">Meaning can be addressed, related, and manifested without forcing one global taxonomy.</text>
+    <rect x="60" y="145" width="300" height="190" rx="18" fill="#18243d" stroke="#6ea8fe" stroke-width="3"/>
+    <text x="210" y="190" text-anchor="middle" font-size="25" font-weight="700">MicroBundleDomain</text>
+    <text x="210" y="225" text-anchor="middle" font-size="17">generic mechanism</text>
+    <text x="210" y="267" text-anchor="middle" font-size="15">lifecycle • contracts</text>
+    <text x="210" y="294" text-anchor="middle" font-size="15">composition-ready bundles</text>
+    <rect x="450" y="125" width="300" height="230" rx="18" fill="#1d2944" stroke="#8bd5ca" stroke-width="3"/>
+    <text x="600" y="170" text-anchor="middle" font-size="27" font-weight="700">Ontology</text>
+    <text x="600" y="202" text-anchor="middle" font-size="17">optional semantic layer</text>
+    <text x="600" y="245" text-anchor="middle" font-size="15">definitions • versions</text>
+    <text x="600" y="273" text-anchor="middle" font-size="15">semantic addresses</text>
+    <text x="600" y="301" text-anchor="middle" font-size="15">relationships • coexistence</text>
+    <text x="600" y="329" text-anchor="middle" font-size="14" opacity=".8">5 layers, 9 layers, or another structure</text>
+    <rect x="840" y="145" width="300" height="190" rx="18" fill="#18243d" stroke="#c7a7ff" stroke-width="3"/>
+    <text x="990" y="190" text-anchor="middle" font-size="25" font-weight="700">Domain MicroBundles</text>
+    <text x="990" y="225" text-anchor="middle" font-size="17">application-owned meaning</text>
+    <text x="990" y="267" text-anchor="middle" font-size="15">Animals • AEC • Physics</text>
+    <text x="990" y="294" text-anchor="middle" font-size="15">or any developer-defined domain</text>
+    <path d="M360 240 H450" stroke="#d9e2f2" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M750 240 H840" stroke="#d9e2f2" stroke-width="4" marker-end="url(#arrow)"/>
+    <rect x="105" y="435" width="990" height="195" rx="20" fill="#121a2d" stroke="#e6b85c" stroke-width="3"/>
+    <text x="600" y="475" text-anchor="middle" font-size="23" font-weight="700">Semantic address → relationship → manifestation</text>
+    <text x="600" y="520" text-anchor="middle" font-size="18">ontology://42/1.0.0/life/animal/fish/locomotion/swim</text>
+    <text x="600" y="558" text-anchor="middle" font-size="16">manifests-as</text>
+    <text x="600" y="594" text-anchor="middle" font-size="18">animation/swim • behavior • simulation rule • UI affordance</text>
+    <text x="600" y="680" text-anchor="middle" font-size="16" opacity=".75">FSM_COS may compose these pieces; it does not become the owner of their ontology.</text>
+  </g>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#d9e2f2"/>
+    </marker>
+  </defs>
+</svg>
