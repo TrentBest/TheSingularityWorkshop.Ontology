@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches: [main, development]
+  pull_request:
+    branches: [main, development]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+      - name: Restore
+        run: dotnet restore TheSingularityWorkshop.Ontology.slnx
+      - name: Build
+        run: dotnet build TheSingularityWorkshop.Ontology.slnx --configuration Release --no-restore --warnaserror
+      - name: Test
+        run: dotnet test TheSingularityWorkshop.Ontology.slnx --configuration Release --no-build --verbosity normal
+      - name: Pack
+        run: dotnet pack TheSingularityWorkshop.Ontology.csproj --configuration Release --no-build --output ./artifacts
