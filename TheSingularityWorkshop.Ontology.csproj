@@ -13,6 +13,11 @@
     <PackageTags>ontology;semantic-address;microbundle;composition;knowledge-model</PackageTags>
     <RepositoryUrl>https://github.com/TrentBest/TheSingularityWorkshop.Ontology</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/TrentBest/TheSingularityWorkshop.Ontology</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>Initial public ontology contracts with scalar and N-dimensional indexing, semantic addressing, relationships, and address-space mathematics.</PackageReleaseNotes>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
@@ -22,6 +27,7 @@
 
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="LICENSE" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
