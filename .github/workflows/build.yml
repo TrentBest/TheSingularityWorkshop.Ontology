@@ -27,3 +27,9 @@ jobs:
         run: dotnet test TheSingularityWorkshop.Ontology.slnx --configuration Release --no-build --verbosity normal
       - name: Pack
         run: dotnet pack TheSingularityWorkshop.Ontology.csproj --configuration Release --no-build --output ./artifacts
+
+      - name: Upload NuGet artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: ontology-nuget
+          path: ./artifacts/*
