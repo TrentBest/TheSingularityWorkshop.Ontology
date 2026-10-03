@@ -6,12 +6,14 @@ namespace TheSingularityWorkshop.Ontology;
 /// </summary>
 public readonly struct OntologyIndex : IEquatable<OntologyIndex>
 {
-    private readonly ulong[] _coordinates;
+    private readonly ulong _value;
+    private readonly ulong[]? _coordinates;
 
     /// <summary>Creates a scalar, single-dimension ontology index.</summary>
     public OntologyIndex(ulong value)
     {
-        _coordinates = [value];
+        _value = value;
+        _coordinates = null;
     }
 
     private OntologyIndex(ulong[] coordinates)
@@ -19,6 +21,7 @@ public readonly struct OntologyIndex : IEquatable<OntologyIndex>
         if (coordinates.Length == 0)
             throw new ArgumentException("At least one index coordinate is required.", nameof(coordinates));
 
+        _value = 0;
         _coordinates = coordinates;
     }
 
@@ -26,21 +29,29 @@ public readonly struct OntologyIndex : IEquatable<OntologyIndex>
     public int Rank => _coordinates?.Length ?? 1;
 
     /// <summary>Gets whether this is the default single-integer form.</summary>
-    public bool IsScalar => Rank == 1;
+    public bool IsScalar => _coordinates is null;
 
     /// <summary>Gets the scalar value. Throws when the index is multidimensional.</summary>
     public ulong Value =>
         IsScalar
-            ? _coordinates[0]
+            ? _value
             : throw new InvalidOperationException("A multidimensional index does not have a single Value.");
 
     /// <summary>Gets an index coordinate by dimension.</summary>
-    public ulong this[int dimension] => _coordinates[dimension];
+    public ulong this[int dimension] =>
+        IsScalar
+            ? dimension == 0
+                ? _value
+                : throw new IndexOutOfRangeException()
+            : _coordinates![dimension];
 
     /// <summary>Gets a defensive copy of the coordinates.</summary>
-    public IReadOnlyList<ulong> Coordinates => _coordinates.ToArray();
+    public IReadOnlyList<ulong> Coordinates =>
+        IsScalar
+            ? [_value]
+            : _coordinates!.ToArray();
 
-    /// <summary>Creates a multidimensional ontology index from ordered coordinates.</summary>
+    /// <summary>Creates an ontology index from ordered coordinates.</summary>
     public static OntologyIndex Create(params ulong[] coordinates)
     {
         ArgumentNullException.ThrowIfNull(coordinates);
@@ -48,12 +59,28 @@ public readonly struct OntologyIndex : IEquatable<OntologyIndex>
         if (coordinates.Length == 0)
             throw new ArgumentException("At least one index coordinate is required.", nameof(coordinates));
 
-        return new OntologyIndex(coordinates.ToArray());
+        return coordinates.Length == 1
+            ? new OntologyIndex(coordinates[0])
+            : new OntologyIndex(coordinates.ToArray());
     }
 
     /// <inheritdoc />
-    public bool Equals(OntologyIndex other) =>
-        _coordinates.AsSpan().SequenceEqual(other._coordinates);
+    public bool Equals(OntologyIndex other)
+    {
+        if (IsScalar && other.IsScalar)
+            return _value == other._value;
+
+        if (Rank != other.Rank)
+            return false;
+
+        for (var dimension = 0; dimension < Rank; dimension++)
+        {
+            if (this[dimension] != other[dimension])
+                return false;
+        }
+
+        return true;
+    }
 
     /// <inheritdoc />
     public override bool Equals(object? obj) =>
@@ -63,8 +90,8 @@ public readonly struct OntologyIndex : IEquatable<OntologyIndex>
     public override int GetHashCode()
     {
         var hash = new HashCode();
-        foreach (var coordinate in _coordinates)
-            hash.Add(coordinate);
+        for (var dimension = 0; dimension < Rank; dimension++)
+            hash.Add(this[dimension]);
 
         return hash.ToHashCode();
     }
@@ -78,6 +105,6 @@ public readonly struct OntologyIndex : IEquatable<OntologyIndex>
     /// <inheritdoc />
     public override string ToString() =>
         IsScalar
-            ? Value.ToString()
-            : $"[{string.Join(",", _coordinates)}]";
+            ? _value.ToString()
+            : $"[{string.Join(",", _coordinates!)}]";
 }
