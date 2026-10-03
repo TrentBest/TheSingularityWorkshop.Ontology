@@ -10,7 +10,8 @@ public sealed record OntologyDefinition(
     IReadOnlyList<OntologyLayerDefinition> Layers)
 {
     /// <summary>Gets a semantic address within this ontology.</summary>
-    public OntologyAddress Address(string path) => new(Id, Version, path);
+    public OntologyAddress Address(string path, OntologyIndex? index = null) =>
+        OntologyAddress.Create(Id, Version, path, index);
 
     /// <summary>Validates the definition's identity and layer declarations.</summary>
     public void Validate()
