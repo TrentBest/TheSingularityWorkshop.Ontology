@@ -171,15 +171,105 @@ An ontology relationship can connect that semantic concept to a manifestation su
 
 This keeps the mechanism reusable while allowing richer semantic systems to grow above it.
 
-## Documentation
+## Address-space mathematics
 
-- **[Theory](docs/THEORY.md)** — the reasoning and design principles behind optional, addressable semantics.
-- **[Architecture](docs/ARCHITECTURE.md)** — package boundaries, compact indexing, semantic resolution, coexistence, and evolution.
-- **[Architecture visual](docs/ontology-boundary.svg)** — a visual map of the package boundary.
-- **[Semantic resolution visual](docs/semantic-resolution.svg)** — a visual from semantic meaning to manifestation.
+The indexing model is intentionally backed by explicit mathematics rather than a vague claim of “large scale.”
 
-## Status
+A single `ulong` coordinate has:
 
-This package is an early public contract. The initial release establishes the architectural boundary and intentionally keeps the model small.
+$$
+2^{64}
+$$
 
-The integer indexing model is intentionally protocol-neutral: it gives the runtime a compact scalar or multidimensional representation without forcing every consumer to adopt the same vocabulary system.
+possible values.
+
+For N dimensions with extents $D_0, D_1, \\dots, D_{N-1}$, the address-space cardinality is:
+
+$$
+|A| = \\prod_{i=0}^{N-1} D_i
+$$
+
+If every dimension uses the complete 64-bit coordinate domain:
+
+$$
+|A| = (2^{64})^N = 2^{64N}
+$$
+
+That means a five-dimensional full-`ulong` coordinate space contains $2^{320}$ possible addresses, while a nine-dimensional space contains $2^{576}$.
+
+Those are **addressable possibilities**, not an instruction to allocate an array that large. The ontology describes semantic space; repositories and runtimes materialize only the portions that actually exist.
+
+`OntologyIndexSpace` makes the distinction concrete. It can:
+
+- describe bounded N-dimensional extents;
+- calculate exact cardinality with `BigInteger`;
+- flatten a coordinate into a row-major dense-array offset;
+- reverse that offset back into the semantic coordinate.
+
+See **[Address-space mathematics](docs/MATHEMATICS.md)** and the [address-space visual](docs/address-space.svg).
+
+## The N-dimensional model
+
+The core remains one integer by default:
+
+`OntologyIndex(42)`
+
+When a domain needs layers or arrays, it expands without changing the identity primitive:
+
+`OntologyIndex.Create(2, 14, 7, 3)`
+
+The rank belongs to the consuming ontology. There is no Workshop-wide requirement that an ontology have five, nine, or any other number of layers.
+
+## NuGet package
+
+This repository is the canonical home of the Workshop's optional ontology contracts. The package is designed to be consumed independently by applications that choose semantic addressing.
+
+The dependency direction remains deliberate:
+
+```text
+MicroBundleDomain
+      |
+      +----> Ontology
+      |
+      +----> application/domain MicroBundles
+
+ProtocolAI --optional consumer-side vocabulary mapping--> OntologyIndex
+FSM_COS ----composes declared pieces---------------------> runtime
+MicroBundleRepository ----stores materialized artifacts-> storage
+```
+
+Ontology does **not** depend on ProtocolAI, FSM_COS, or the repository implementation.
+
+## Ecosystem example
+
+The intended use is not “make everything an ontology.”
+
+It is:
+
+1. define semantic structure where it adds value;
+2. give that structure stable addresses;
+3. use relationships to connect meaning across independently owned domains;
+4. let FSM_COS compose the participating MicroBundles;
+5. let renderers, simulations, UI, or other manifestations consume the resolved meaning;
+6. materialize only the data and behavior that actually exists.
+
+This makes the Ontology package a concrete example of the Workshop's broader principle:
+
+> **Optional structure should remain optional, while the structures that do exist should be explicit, addressable, and composable.**
+
+## Documentation map
+
+- **[Theory](docs/THEORY.md)** — why semantic structure is optional and how meaning can become addressable.
+- **[Architecture](docs/ARCHITECTURE.md)** — package boundaries and semantic resolution.
+- **[Mathematics](docs/MATHEMATICS.md)** — N-dimensional address-space cardinality and dense-array mapping.
+- **[Ontology boundary visual](docs/ontology-boundary.svg)** — dependency and ownership boundaries.
+- **[Semantic resolution visual](docs/semantic-resolution.svg)** — meaning to manifestation.
+- **[Address-space visual](docs/address-space.svg)** — scalar, N-dimensional, and linearized indexing.
+
+---
+
+**The Singularity Workshop**
+
+[GitHub](https://github.com/TrentBest/TheSingularityWorkshop.Ontology) · [NuGet](https://www.nuget.org/packages/TheSingularityWorkshop.Ontology)
+
+*Meaning can be addressable without making one ontology mandatory.*
