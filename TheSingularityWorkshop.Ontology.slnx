@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="TheSingularityWorkshop.Ontology.csproj" />
+  <Project Path="tests/TheSingularityWorkshop.Ontology.Tests/TheSingularityWorkshop.Ontology.Tests.csproj" />
+</Solution>
