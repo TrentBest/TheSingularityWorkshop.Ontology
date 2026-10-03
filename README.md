@@ -76,7 +76,8 @@ This keeps the mechanism reusable while allowing richer semantic systems to grow
 
 - **[Theory](docs/THEORY.md)** — the reasoning and design principles behind optional, addressable semantics.
 - **[Architecture](docs/ARCHITECTURE.md)** — package boundaries, semantic resolution, coexistence, and evolution.
-- **[Architecture visual](docs/ontology-boundary.svg)** — a visual map of the boundary and semantic flow.
+- **[Architecture visual](docs/ontology-boundary.svg)** — a visual map of the package boundary.
+- **[Semantic resolution visual](docs/semantic-resolution.svg)** — a visual from semantic meaning to manifestation.
 
 ## Status
 
