@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">Ontology N-dimensional address space</title>
+  <desc id="desc">A visual explanation of scalar and multidimensional ontology coordinates, their cardinality, and their optional flattening into a dense array offset.</desc>
+  <rect width="1400" height="760" fill="#0b1020"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#f4f7fb">
+    <text x="700" y="52" text-anchor="middle" font-size="34" font-weight="700">One address primitive. N-dimensional scale.</text>
+    <text x="700" y="86" text-anchor="middle" font-size="18" opacity=".8">Coordinates describe semantic location; cardinality describes the space they can address.</text>
+
+    <rect x="55" y="135" width="385" height="210" rx="20" fill="#18243d" stroke="#6ea8fe" stroke-width="3"/>
+    <text x="247" y="178" text-anchor="middle" font-size="25" font-weight="700">1D default</text>
+    <text x="247" y="225" text-anchor="middle" font-size="22">OntologyIndex(42)</text>
+    <text x="247" y="265" text-anchor="middle" font-size="18">one ulong coordinate</text>
+    <text x="247" y="305" text-anchor="middle" font-size="18">2⁶⁴ possible values</text>
+
+    <rect x="507" y="135" width="385" height="210" rx="20" fill="#1d2944" stroke="#8bd5ca" stroke-width="3"/>
+    <text x="699" y="178" text-anchor="middle" font-size="25" font-weight="700">N-dimensional</text>
+    <text x="699" y="225" text-anchor="middle" font-size="21">[2, 14, 7, 3]</text>
+    <text x="699" y="265" text-anchor="middle" font-size="18">rank = 4</text>
+    <text x="699" y="305" text-anchor="middle" font-size="18">each coordinate remains ulong</text>
+
+    <rect x="959" y="135" width="385" height="210" rx="20" fill="#18243d" stroke="#c7a7ff" stroke-width="3"/>
+    <text x="1151" y="178" text-anchor="middle" font-size="25" font-weight="700">Address-space cardinality</text>
+    <text x="1151" y="225" text-anchor="middle" font-size="22">|A| = ∏ Dᵢ</text>
+    <text x="1151" y="265" text-anchor="middle" font-size="18">full 64-bit dimensions</text>
+    <text x="1151" y="305" text-anchor="middle" font-size="18">|A| = 2⁶⁴ᴺ</text>
+
+    <rect x="110" y="410" width="1180" height="250" rx="22" fill="#121a2d" stroke="#e6b85c" stroke-width="3"/>
+    <text x="700" y="455" text-anchor="middle" font-size="25" font-weight="700">Semantic coordinate → optional dense-array offset</text>
+    <text x="700" y="505" text-anchor="middle" font-size="20">extents [D₀, D₁, D₂, D₃]</text>
+    <text x="700" y="545" text-anchor="middle" font-size="21">[i₀, i₁, i₂, i₃] → (((i₀D₁ + i₁)D₂ + i₂)D₃ + i₃)</text>
+    <text x="700" y="590" text-anchor="middle" font-size="18">OntologyIndex stays semantic; OntologyIndexSpace provides the storage-oriented mapping.</text>
+    <text x="700" y="625" text-anchor="middle" font-size="18" opacity=".8">The space can be enormous without being physically materialized.</text>
+
+    <text x="700" y="715" text-anchor="middle" font-size="17" opacity=".75">Possibility is addressed. Actuality is materialized.</text>
+  </g>
+</svg>
