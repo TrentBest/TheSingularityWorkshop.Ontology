@@ -47,6 +47,48 @@ public sealed class OntologyTests
     }
 
     [Fact]
+    public void Address_can_carry_a_scalar_integer_index()
+    {
+        var address = OntologyAddress.Create(
+            42,
+            "1.0.0",
+            "life/animal/fish",
+            new OntologyIndex(17));
+
+        Assert.True(address.Index.IsScalar);
+        Assert.Equal(17UL, address.Index.Value);
+    }
+
+    [Fact]
+    public void Address_can_carry_a_multidimensional_integer_index()
+    {
+        var address = OntologyAddress.Create(
+            42,
+            "1.0.0",
+            "life/animal/fish",
+            OntologyIndex.Create(2, 14, 7, 3));
+
+        Assert.Equal(4, address.Index.Rank);
+        Assert.Equal(2UL, address.Index[0]);
+        Assert.Equal(14UL, address.Index[1]);
+        Assert.Equal(7UL, address.Index[2]);
+        Assert.Equal(3UL, address.Index[3]);
+        Assert.Equal("[2,14,7,3]", address.Index.ToString());
+    }
+
+    [Fact]
+    public void Scalar_and_single_coordinate_forms_have_the_same_identity()
+    {
+        Assert.Equal(new OntologyIndex(17), OntologyIndex.Create(17));
+    }
+
+    [Fact]
+    public void Empty_multidimensional_index_is_rejected()
+    {
+        Assert.Throws<ArgumentException>(() => OntologyIndex.Create());
+    }
+
+    [Fact]
     public void Relationships_can_cross_ontology_boundaries()
     {
         var source = OntologyAddress.Create(1, "1.0.0", "life/animal/fish");
