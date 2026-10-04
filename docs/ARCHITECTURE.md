@@ -53,6 +53,46 @@ FSM_COS composes the resulting pieces without owning their ontology.
 
 The important boundary is that the semantic address does not itself contain the implementation. It identifies meaning. A relationship can connect that meaning to an implementation owned elsewhere.
 
+
+## Domain contract inventory
+
+The current package deliberately separates five kinds of semantic information:
+
+| Contract | Answers | Does not answer |
+|---|---|---|
+| `OntologyDefinition` | Which ontology is this, which version is it, and what ordered layers does it declare? | What individual concepts mean |
+| `OntologyAddress` | Where is a semantic concept located within a qualified ontology? | How that concept is implemented |
+| `OntologyIndex` | What compact scalar or N-dimensional coordinate identifies the location? | How coordinates are stored physically |
+| `OntologyIndexSpace` | What bounded coordinate space exists, and how can coordinates be mapped to dense offsets? | Whether dense storage should be used |
+| `OntologyRelationship` | How are two semantic addresses related? | What the predicate means to a particular domain |
+
+`OntologySet` provides the runtime registry for independently versioned definitions without declaring a universal ontology.
+
+### Definition invariants
+
+An ontology definition requires:
+
+- a non-zero ontology identifier;
+- a non-empty name;
+- a non-empty version;
+- unique, non-zero layer identifiers;
+- non-empty layer names;
+- non-negative, unique layer ordering.
+
+These invariants make the declared layer sequence unambiguous without imposing a fixed number of layers.
+
+### Index invariants
+
+An ontology index has at least one coordinate. A scalar index is the one-dimensional form; multiple coordinates represent an ordered N-dimensional location. A one-coordinate index has the same identity as its scalar equivalent.
+
+An index space requires at least one positive dimension. Each dimension can contain at most the complete `ulong` coordinate domain, while total cardinality is represented with `BigInteger`.
+
+### Boundary rule
+
+The package defines **semantic structure**, not domain knowledge.
+
+It can express an ontology containing chemistry, AEC, animal life, physics, rendering, or any other subject, but it does not embed those subjects into the contract. The eventual Workshop master ontology is therefore content built with these mechanisms, not additional authority inside this package.
+
 ## N-dimensional indexing
 
 OntologyIndex is the compact semantic coordinate.
