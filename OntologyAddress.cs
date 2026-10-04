@@ -22,19 +22,31 @@ public readonly record struct OntologyAddress(
         string path,
         OntologyIndex? index = null)
     {
-        if (ontologyId == 0)
-            throw new ArgumentOutOfRangeException(nameof(ontologyId));
-
-        if (string.IsNullOrWhiteSpace(ontologyVersion))
-            throw new ArgumentException("Ontology version is required.", nameof(ontologyVersion));
-
-        if (string.IsNullOrWhiteSpace(path))
-            throw new ArgumentException("Ontology path is required.", nameof(path));
-
-        return new OntologyAddress(ontologyId, ontologyVersion, path.Trim('/'))
+        var address = new OntologyAddress(
+            ontologyId,
+            ontologyVersion,
+            path.Trim('/'))
         {
             Index = index ?? new OntologyIndex(0)
         };
+
+        address.Validate();
+        return address;
+    }
+
+    /// <summary>
+    /// Validates the qualified semantic identity carried by this address.
+    /// </summary>
+    public void Validate()
+    {
+        if (OntologyId == 0)
+            throw new ArgumentOutOfRangeException(nameof(OntologyId));
+
+        if (string.IsNullOrWhiteSpace(OntologyVersion))
+            throw new ArgumentException("Ontology version is required.", nameof(OntologyVersion));
+
+        if (string.IsNullOrWhiteSpace(Path))
+            throw new ArgumentException("Ontology path is required.", nameof(Path));
     }
 
     /// <summary>Returns the canonical address representation.</summary>
