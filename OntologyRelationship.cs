@@ -11,6 +11,9 @@ public sealed record OntologyRelationship(
     /// <summary>Validates the relationship.</summary>
     public void Validate()
     {
+        Source.Validate();
+        Target.Validate();
+
         if (string.IsNullOrWhiteSpace(Predicate))
             throw new ArgumentException("Relationship predicates are required.", nameof(Predicate));
     }
