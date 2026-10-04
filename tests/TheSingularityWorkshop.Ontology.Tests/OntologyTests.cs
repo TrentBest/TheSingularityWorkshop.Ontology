@@ -157,4 +157,43 @@ public sealed class OntologyTests
 
         Assert.Equal(target, relationship.Target);
     }
+    [Fact]
+    public void Address_rejects_invalid_identity()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            OntologyAddress.Create(0, "1.0.0", "life"));
+
+        Assert.Throws<ArgumentException>(() =>
+            OntologyAddress.Create(42, "", "life"));
+
+        Assert.Throws<ArgumentException>(() =>
+            OntologyAddress.Create(42, "1.0.0", ""));
+    }
+
+    [Fact]
+    public void Default_address_is_rejected_by_validation()
+    {
+        var address = default(OntologyAddress);
+
+        Assert.Throws<ArgumentOutOfRangeException>(() => address.Validate());
+    }
+
+    [Fact]
+    public void Relationships_reject_invalid_addresses_and_predicates()
+    {
+        var invalidSource = new OntologyRelationship(
+            default,
+            "manifests-as",
+            OntologyAddress.Create(2, "1.0.0", "animation/swim"));
+
+        Assert.Throws<ArgumentOutOfRangeException>(() => invalidSource.Validate());
+
+        var invalidPredicate = new OntologyRelationship(
+            OntologyAddress.Create(1, "1.0.0", "life/animal/fish"),
+            " ",
+            OntologyAddress.Create(2, "1.0.0", "animation/swim"));
+
+        Assert.Throws<ArgumentException>(() => invalidPredicate.Validate());
+    }
+
 }
