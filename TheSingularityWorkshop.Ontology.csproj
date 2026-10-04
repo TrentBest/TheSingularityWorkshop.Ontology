@@ -6,7 +6,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>TheSingularityWorkshop.Ontology</PackageId>
-    <Version>0.1.0-alpha.2</Version>
+    <Version>0.1.0-alpha.3</Version>
     <Authors>TheSingularityWorkshop</Authors>
     <Company>The Singularity Workshop</Company>
     <Description>Independent ontology definitions, semantic addresses, relationships, and interoperable ontology composition.</Description>
@@ -15,7 +15,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/TrentBest/TheSingularityWorkshop.Ontology</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Initial public ontology contracts with scalar and N-dimensional indexing, semantic addressing, relationships, and address-space mathematics.</PackageReleaseNotes>
+    <PackageReleaseNotes>Ontology contracts with validated layer definitions, scalar and N-dimensional indexing, semantic addressing, relationships, and address-space mathematics.</PackageReleaseNotes>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageReadmeFile>README.md</PackageReadmeFile>
