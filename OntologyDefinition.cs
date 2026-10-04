@@ -27,9 +27,25 @@ public sealed record OntologyDefinition(
 
         ArgumentNullException.ThrowIfNull(Layers);
 
+        foreach (var layer in Layers)
+        {
+            if (layer.Id == 0)
+                throw new ArgumentOutOfRangeException(nameof(Layers), "Ontology layer identifiers must be non-zero.");
+
+            if (string.IsNullOrWhiteSpace(layer.Name))
+                throw new ArgumentException("Ontology layer names are required.", nameof(Layers));
+
+            if (layer.Order < 0)
+                throw new ArgumentOutOfRangeException(nameof(Layers), "Ontology layer order must be non-negative.");
+        }
+
         var duplicateIds = Layers.GroupBy(layer => layer.Id).Where(group => group.Count() > 1);
         if (duplicateIds.Any())
             throw new ArgumentException("Ontology layer identifiers must be unique.", nameof(Layers));
+
+        var duplicateOrders = Layers.GroupBy(layer => layer.Order).Where(group => group.Count() > 1);
+        if (duplicateOrders.Any())
+            throw new ArgumentException("Ontology layer orders must be unique.", nameof(Layers));
     }
 }
 
