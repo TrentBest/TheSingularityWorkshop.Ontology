@@ -25,6 +25,28 @@ public sealed class OntologyTests
         Assert.Equal(5, ontology.Layers.Count);
     }
 
+
+
+    [Fact]
+    public void Ontology_rejects_invalid_layer_declarations()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            new OntologyDefinition(1, "Invalid", "1.0.0", [new(0, "Layer", 0)]).Validate());
+
+        Assert.Throws<ArgumentException>(() =>
+            new OntologyDefinition(1, "Invalid", "1.0.0", [new(1, "", 0)]).Validate());
+
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            new OntologyDefinition(1, "Invalid", "1.0.0", [new(1, "Layer", -1)]).Validate());
+
+        Assert.Throws<ArgumentException>(() =>
+            new OntologyDefinition(
+                1,
+                "Invalid",
+                "1.0.0",
+                [new(1, "One", 0), new(2, "Two", 0)]).Validate());
+    }
+
     [Fact]
     public void Ontologies_can_coexist_by_identity_and_version()
     {
