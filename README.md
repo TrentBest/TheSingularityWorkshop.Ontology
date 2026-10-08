@@ -32,6 +32,59 @@ For example, an application could express a fish's swimming concept as an ontolo
 
 Read the deeper design rationale in [docs/THEORY.md](docs/THEORY.md) and the implementation boundary in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
+## 60-Second Quick Start
+
+The source project currently declares `0.1.0-alpha.3`. Before using a NuGet install command, verify that exact version is published; the source version alone is not proof of publication. Until then, use a local project reference to try the current source.
+
+### 1. Create a project in Visual Studio
+
+Choose **Create a new project → Console App**, select C#, and target **.NET 8**.
+
+### 2. Open the Developer Terminal
+
+Choose **View → Terminal** and ensure it is in the directory containing your Console App's `.csproj` file.
+
+### 3. Reference the local source
+
+Clone this repository next to your application and run the following from your Console App directory. Adjust the relative path if your folders differ:
+
+```powershell
+dotnet add reference ..\\TheSingularityWorkshop.Ontology\\TheSingularityWorkshop.Ontology.csproj
+```
+
+### 4. Replace `Program.cs` with this example
+
+```csharp
+using TheSingularityWorkshop.Ontology;
+
+var index = OntologyIndex.Create(2, 14, 7, 3);
+var address = OntologyAddress.Create(
+    ontologyId: 1001,
+    ontologyVersion: "1.0.0",
+    path: "animal/fish/swimming",
+    index: index);
+
+Console.WriteLine(address);
+Console.WriteLine($"Index: {address.Index}; rank: {address.Index.Rank}");
+```
+
+Expected output:
+
+```text
+ontology://1001/1.0.0/animal/fish/swimming
+Index: [2,14,7,3]; rank: 4
+```
+
+This example gives one semantic concept a qualified address and a four-dimensional integer index. It does not impose that same ontology or number of dimensions on every consumer.
+
+## Add It to an Existing Project
+
+Already have an application? Reference Ontology only where your domain or runtime benefits from semantic addresses and relationships. Keep your existing models and application flow.
+
+Ontology has a deliberate dependency on MicroBundleDomain, but **does not depend on ProtocolAI or FSM_COS**. A consumer may use ProtocolAI to map its own vocabulary to integer IDs, but that mapping is optional and belongs on the consumer side.
+
+When the package version is confirmed as published, use the exact version shown on the [NuGet package page](https://www.nuget.org/packages/TheSingularityWorkshop.Ontology); until then, use a local project reference as shown above.
+
 ## Integer indexing without a ProtocolAI dependency
 
 Ontology uses a deliberately small, protocol-neutral indexing primitive: `OntologyIndex`.
