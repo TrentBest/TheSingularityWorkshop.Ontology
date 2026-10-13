@@ -21,7 +21,7 @@ The Workshop needs semantic structure that can grow beyond renderer-specific con
 
 ## 🟣 02 Why
 
-This boundary lets the Workshop compose the capability without confusing it with the host, user interface, external provider, or application authority. The implementation status and limits described in the detailed guide remain authoritative.
+A global mandatory schema would make every capability depend on one model of the world. Optional ontology contracts let applications share semantic addresses and relationships when useful while leaving other MicroBundles free to use different or coexisting schemes.
 
 ## 🔺 03 How
 
