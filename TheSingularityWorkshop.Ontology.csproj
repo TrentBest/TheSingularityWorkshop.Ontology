@@ -30,7 +30,13 @@
     <None Include="LICENSE" Pack="true" PackagePath="" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(WorkshopUseRepositorySources)' != 'true'">
     <PackageReference Include="TheSingularityWorkshop.MicroBundleDomain" Version="1.0.1" />
   </ItemGroup>
+  <ItemGroup Condition="'$(WorkshopUseRepositorySources)' == 'true'">
+    <ProjectReference Include="../TheSingularityWorkshop.MicroBundleDomain/TheSingularityWorkshop.MicroBundleDomain.csproj" />
+  </ItemGroup>
+  <Target Name="ValidateWorkshopRepositorySources" BeforeTargets="PrepareForBuild" Condition="'$(WorkshopUseRepositorySources)' == 'true'">
+    <Error Condition="!Exists('../TheSingularityWorkshop.MicroBundleDomain/TheSingularityWorkshop.MicroBundleDomain.csproj')" Text="WorkshopUseRepositorySources=true requires TheSingularityWorkshop.MicroBundleDomain beside this repository." />
+  </Target>
 </Project>
