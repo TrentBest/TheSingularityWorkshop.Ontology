@@ -17,7 +17,7 @@ flowchart TD
 
 ## 🟦 01 What
 
-The Workshop needs semantic structure that can grow beyond renderer-specific conditionals without turning one schema into a rule every MicroBundle must follow.
+It provides optional contracts for semantic addresses, indexes, and relationships. Consumers choose whether and how to adopt them; the package does not impose one mandatory ontology.
 
 ## 🟣 02 Why
 
