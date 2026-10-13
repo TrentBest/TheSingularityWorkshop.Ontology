@@ -103,3 +103,30 @@ jobs:
 
       - name: Publish package to NuGet.org
         run: dotnet nuget push "./artifacts/*.nupkg" --source "https://api.nuget.org/v3/index.json" --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --skip-duplicate
+
+  source-integration:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout Ontology
+        uses: actions/checkout@v7
+        with:
+          path: TheSingularityWorkshop.Ontology
+      - name: Checkout MicroBundleDomain source
+        uses: actions/checkout@v7
+        with:
+          repository: TrentBest/TheSingularityWorkshop.MicroBundleDomain
+          ref: development
+          path: TheSingularityWorkshop.MicroBundleDomain
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore source-integrated solution
+        working-directory: TheSingularityWorkshop.Ontology
+        run: dotnet restore TheSingularityWorkshop.Ontology.slnx -p:WorkshopUseRepositorySources=true
+      - name: Build source-integrated solution
+        working-directory: TheSingularityWorkshop.Ontology
+        run: dotnet build TheSingularityWorkshop.Ontology.slnx --configuration Release --no-restore -p:WorkshopUseRepositorySources=true
+      - name: Test source-integrated solution
+        working-directory: TheSingularityWorkshop.Ontology
+        run: dotnet test TheSingularityWorkshop.Ontology.slnx --configuration Release --no-build -p:WorkshopUseRepositorySources=true
