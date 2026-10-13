@@ -1,4 +1,43 @@
+![The Singularity Workshop animated moniker](https://raw.githubusercontent.com/TrentBest/TheSingularityWorkshop.Renderer/development/docs/assets/moniker.svg)
+
 # The Singularity Workshop — Ontology
+
+
+> **Optional semantic contracts—not a mandatory global ontology.**
+
+The Workshop needs semantic structure that can grow beyond renderer-specific conditionals without turning one schema into a rule every MicroBundle must follow.
+
+```mermaid
+flowchart TD
+  M[Meaning] --> A[Semantic address]
+  A --> I[Integer index]
+  I --> R[Relationships]
+  R --> C[Consumer-defined use]
+```
+
+## 🟦 01 What
+
+The Workshop needs semantic structure that can grow beyond renderer-specific conditionals without turning one schema into a rule every MicroBundle must follow.
+
+## 🟣 02 Why
+
+This boundary lets the Workshop compose the capability without confusing it with the host, user interface, external provider, or application authority. The implementation status and limits described in the detailed guide remain authoritative.
+
+## 🔺 03 How
+
+Give a concept an address, index, and relationships where useful; let consumers decide how to use those relationships. Ontology remains an optional capability rather than a gatekeeper.
+
+## 🟢 04 See it in a minute
+
+Read the architecture and theory first, then run the package tests to inspect the current contracts and their guarantees.
+
+## 🟪 05 Documentation and theory
+
+[Architecture](docs/ARCHITECTURE.md) · [Theory](docs/THEORY.md)
+
+---
+
+## Detailed guide
 
 ![Ontology architecture](docs/ontology-boundary.svg)
 
