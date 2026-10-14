@@ -5,7 +5,7 @@
   </a>
 </p>
 
-# The Singularity Workshop — Ontology
+# ✳️ 00 The Singularity Workshop — Ontology
 
 ![Ontology architecture](docs/ontology-boundary.svg)
 
