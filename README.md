@@ -7,6 +7,8 @@
 
 # ✳️ 00 The Singularity Workshop — Ontology
 
+This README follows the Workshop's shared [Documentation Standard](https://github.com/TrentBest/TheSingularityWorkshop.FSM_COS/blob/master/DOCUMENTATION_STANDARD.md).
+
 ![Ontology architecture](docs/ontology-boundary.svg)
 
 **Ontology is a MicroBundle, not a constraint on MicroBundles.**
