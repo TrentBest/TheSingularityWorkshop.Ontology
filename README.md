@@ -3,6 +3,7 @@
 # The Singularity Workshop — Ontology
 
 
+[![Sith Policy](assets/sith-policy.svg)](https://github.com/TrentBest/TheSingularityWorkshop.Ontology/actions/workflows/sith-policy.yml)
 > **Optional semantic contracts—not a mandatory global ontology.**
 
 The Workshop needs semantic structure that can grow beyond renderer-specific conditionals without turning one schema into a rule every MicroBundle must follow.
