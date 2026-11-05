@@ -1,0 +1,19 @@
+{
+  "repository": "TrentBest/TheSingularityWorkshop.Ontology",
+  "policy": "exactly-master-and-development",
+  "required_branches": [
+    "development",
+    "master"
+  ],
+  "actual_branches": [
+    "chore/standardize-ci-ontology",
+    "development",
+    "docs/readme-standard",
+    "master"
+  ],
+  "branch_count": 4,
+  "status": "NON-COMPLIANT",
+  "evaluated_at": "2026-11-05T04:31:55Z",
+  "workflow_run": "https://github.com/TrentBest/TheSingularityWorkshop.Ontology/actions/runs/41968359846",
+  "triggering_commit": "6e294f55754cbb5695851c7c011e739e3d38637c"
+}
