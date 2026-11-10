@@ -13,7 +13,7 @@
   ],
   "branch_count": 4,
   "status": "NON-COMPLIANT",
-  "evaluated_at": "2026-11-09T13:00:01Z",
-  "workflow_run": "https://github.com/TrentBest/TheSingularityWorkshop.Ontology/actions/runs/42621614206",
-  "triggering_commit": "710b264688ad10741a3e3ed5d506102a9a69048c"
+  "evaluated_at": "2026-11-10T12:45:35Z",
+  "workflow_run": "https://github.com/TrentBest/TheSingularityWorkshop.Ontology/actions/runs/42818471064",
+  "triggering_commit": "5285fafd272bbfbb295c376f7ef1c47623e5af3e"
 }
