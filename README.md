@@ -76,6 +76,60 @@ Read the deeper design rationale in [docs/THEORY.md](docs/THEORY.md) and the imp
 
 [Ontology ranges and coverage](docs/ONTOLOGY-RANGES.md) define validated half-open semantic intervals and an opaque server-coverage metadata record. Ontology does not discover servers, route requests, or perform storage.
 
+## 60-Second Quick Start
+
+Ontology targets **.NET 8 and .NET 10**. The source project currently declares `0.1.0-alpha.3`; that declaration is not proof that the exact version is available from NuGet. Verify the published version on the [NuGet package page](https://www.nuget.org/packages/TheSingularityWorkshop.Ontology) before using a package-install command. Until then, use a local project reference.
+
+### 1. Create a .NET 8 or .NET 10 console application
+
+Create a Console App in Visual Studio or with the .NET CLI.
+
+### 2. Reference the local source
+
+Clone this repository next to your application and run this from the directory containing your application's project file. Adjust the relative path if your folders differ:
+
+```powershell
+dotnet add reference ..\\TheSingularityWorkshop.Ontology\\TheSingularityWorkshop.Ontology.csproj
+```
+
+### 3. Create a canonical nine-layer address
+
+```csharp
+using TheSingularityWorkshop.Ontology;
+
+var ontology = WorkshopOntologySchema.CreateDefinition(
+    ontologyId: 1001,
+    name: "Workshop",
+    version: "1.0.0",
+    101, 102, 103, 104, 105, 106, 107, 108, 109);
+
+var index = OntologyIndex.Create(1, 2, 3, 4, 5, 6, 7, 8, 9);
+var address = WorkshopOntologySchema.CreateAddress(
+    ontology,
+    "life/animal/fish",
+    index);
+
+Console.WriteLine(address);
+Console.WriteLine($"Index: {address.Index}; rank: {address.Index.Rank}");
+```
+
+Expected output:
+
+```text
+ontology://1001/1.0.0/life/animal/fish
+Index: [1,2,3,4,5,6,7,8,9]; rank: 9
+```
+
+The layer IDs in this example are illustrative stable identifiers supplied by the ontology owner. They are not generated from the position numbers. The helper validates the canonical layer names/order and requires a nine-coordinate index.
+
+For a generic ontology, use `OntologyDefinition`, `OntologyIndex`, and `OntologyAddress` directly; the generic contracts do not force nine layers.
+
+## Add It to an Existing Project
+
+Reference Ontology only where your domain benefits from semantic addresses, indexes, or relationships. It is not a requirement for every MicroBundle or application.
+
+Ontology depends on MicroBundleDomain, but **does not depend on ProtocolAI or FSM_COS**. A consumer may use ProtocolAI to map its own vocabulary to integer IDs, but that mapping is optional and belongs on the consumer side. FSM_COS can compose resolved MicroBundles without hard-coding ontology-specific meaning.
+
 ## Integer indexing without a ProtocolAI dependency
 
 Ontology uses a deliberately small, protocol-neutral indexing primitive: `OntologyIndex`.
@@ -304,6 +358,7 @@ This makes the Ontology package a concrete example of the Workshop's broader pri
 ## Documentation map
 
 - **[Nine-layer model](docs/NINE-LAYER-MODEL.md)** — the canonical Workshop layer names, why nine, why not ten, and the mathematical model.
+- **[Nine-layer visual](docs/nine-layer-model.svg)** — a visual map of classification and orthogonal structures.
 - **[Theory](docs/THEORY.md)** — why semantic structure is optional and how meaning can become addressable.
 - **[Architecture](docs/ARCHITECTURE.md)** — package boundaries and semantic resolution.
 - **[Mathematics](docs/MATHEMATICS.md)** — N-dimensional address-space cardinality and dense-array mapping.
