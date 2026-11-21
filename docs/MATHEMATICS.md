@@ -213,35 +213,35 @@ That lets a developer choose five layers, nine layers, several independent ontol
 
 The Workshop's canonical classification model has nine ordered positions. If position `i` admits `N_i` values, its coordinate space is the Cartesian product:
 
-[
+$
 \Omega_9 = N_0 \times N_1 \times \cdots \times N_8
-]
+$
 
 and its cardinality is:
 
-[
+$
 |\Omega_9| = \prod_{i=0}^{8} N_i
-]
+$
 
 If all positions have the same finite extent `N`, then:
 
-[
+$
 |\Omega_9| = N^9
-]
+$
 
 For the illustrative bound `N = 2^{31}-1`:
 
-[
+$
 (2^{31}-1)^9 \approx 9.71 \times 10^{83}
-]
+$
 
 This figure describes a possible coordinate count under that assumed per-position bound. It does not mean the implementation allocates the product space, nor does it establish that the current `ulong` implementation is limited to signed 31-bit values.
 
 The generic implementation uses `ulong` components. If each of nine positions admits every value from zero through `ulong.MaxValue`, the full-width theoretical space is:
 
-[
+$
 (2^{64})^9 = 2^{576}
-]
+$
 
 These are two different parameterizations of the same product-space model. The bound must be stated whenever a cardinality is quoted.
 
