@@ -36,6 +36,21 @@ public sealed record OntologyRange(
             throw new ArgumentException("The inclusive start coordinate must precede the exclusive end coordinate.");
     }
 
+    /// <summary>Returns whether an address is inside this half-open semantic interval.</summary>
+    public bool Contains(OntologyAddress address)
+    {
+        Validate();
+        address.Validate();
+
+        if (address.OntologyId != OntologyId ||
+            !string.Equals(address.OntologyVersion, OntologyVersion, StringComparison.Ordinal) ||
+            address.Index.Rank != Start.Index.Rank)
+            return false;
+
+        return Compare(Start.Index, address.Index) <= 0 &&
+               Compare(address.Index, End.Index) < 0;
+    }
+
     private static int Compare(OntologyIndex left, OntologyIndex right)
     {
         for (var dimension = 0; dimension < left.Rank; dimension++)
