@@ -124,6 +124,14 @@ The package defines **semantic structure**, not domain knowledge.
 It can express an ontology containing chemistry, AEC, animal life, physics, rendering, or any other subject, but it does not embed those subjects into the contract. The eventual Workshop master ontology is therefore content built with these mechanisms, not additional authority inside this package.
 
 
+## Ontological behavior associations
+
+Classification alone answers where an asset belongs; it does not provide the behavior stack that should accompany it. The intended model adds ontology-owned associations from concepts (and, where appropriate, classifications) to behavior, control, and capability contracts. The implementation may live in provider MicroBundles, while ontology records the semantic association and its scope.
+
+For example, a Dog concept can associate with locomotion, run behavior, and dog control contracts. A SuperDog specialization can inherit those associations and add flight and crime-fighting capabilities. The asset author declares the specialization and its genuinely novel capabilities; the platform resolves inherited associations instead of requiring repeated manual composition.
+
+This must not be confused with putting executable code into a classification coordinate. The ontology describes *which* behaviors apply and *why*; provider MicroBundles describe *how* those behaviors are implemented; FSM_COS resolves compatible providers and composes them for an experience. The ontology package does not currently implement this resolution pipeline. The association, inheritance, precedence, conflict, override, and versioning contracts remain design work.
+
 ## Canonical nine-layer classification and architectural graphs
 
 The Workshop's canonical ontology uses the ordered classification positions Paradigm, Domain, Kingdom, Phylum, Class, Order, Family, Genus, and Species. This is a canonical semantic profile, not a fixed-rank requirement on the generic library. Independent ontologies may declare other ranks and structures.
