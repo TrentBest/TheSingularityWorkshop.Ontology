@@ -34,6 +34,20 @@ Likewise, gestures, behaviors, capabilities, manifestations, and MicroBundles ar
 
 ## 2. Why nine positions?
 
+The starting point was biological taxonomy. The familiar animal kingdom classification has seven ranks:
+
+`Kingdom → Phylum → Class → Order → Family → Genus → Species`.
+
+The Workshop keeps that recognizable seven-rank progression and adds a broad **Domain** above Kingdom, plus a still broader **Paradigm** above Domain. That yields nine positions:
+
+`Paradigm → Domain → Kingdom → Phylum → Class → Order → Family → Genus → Species`.
+
+The two upper positions are intentionally not expected to be as densely populated as the biological ranks. Paradigm is especially sparse today: distinctions such as **Reality** and **Fiction** illustrate the kind of high-level framing it can hold. Sparsity is expected at the top of a broad-to-specific classification; it is not evidence that the positions are unnecessary. Domain provides the additional level between that framing and the familiar biological sequence.
+
+The animal taxonomy is the structural inspiration, not a claim that every domain is literally biological. The Workshop reuses the progression as a general semantic classification pattern. A physics concept, a fictional character, a building component, and an animal can all be classified without pretending they are biological species.
+
+Nine is therefore not an arbitrary mathematical convenience: it records the deliberate extension of a seven-rank model by two upper framing positions. It remains an engineering and modeling choice rather than a theorem that nature contains exactly nine universal categories.
+
 Nine is the Workshop's chosen canonical semantic decomposition: one broad framing position followed by eight progressively more specific classification positions. It gives the canonical model a stable, fixed-arity address while leaving the library's general contracts free to support other ontologies.
 
 The choice is an engineering and modeling decision, not a theorem that nature contains exactly nine universal categories. Existing upper-ontology and knowledge-representation traditions—including BFO, DOLCE, GFO, UFO, and SUMO—offer useful ideas and competing commitments; their existence does not establish that every useful ontology must have nine layers. The Workshop's nine positions should be defended by the work they do in this system, not by claiming that other ontologies prove the number.
