@@ -15,7 +15,7 @@ Each chapter begins with a recognizable problem, defines vocabulary, reasons abo
 
 ## Reference shelf
 
-- [README and quick start](../README.md)
+- [README and quick start](../../README.md)
 - [Architecture and ownership boundaries](../ARCHITECTURE.md)
 - [Foundational ontology landscape](../ONTOLOGY-LANDSCAPE.md)
 - [N-dimensional mathematics](../MATHEMATICS.md)
