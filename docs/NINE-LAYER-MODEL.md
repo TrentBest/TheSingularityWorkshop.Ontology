@@ -195,5 +195,6 @@ Layer IDs are supplied by the ontology owner and remain distinct from their zero
 ## Related material
 
 - [Ontology theory](THEORY.md)
+- [Ontology landscape](ONTOLOGY-LANDSCAPE.md)
 - [Address-space mathematics](MATHEMATICS.md)
 - [Architecture and ownership boundaries](ARCHITECTURE.md)
