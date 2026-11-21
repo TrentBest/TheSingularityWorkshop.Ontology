@@ -245,6 +245,8 @@ That keeps the core small while leaving room for the larger Singularity Workshop
 
 ## Related reading
 
+- [Ontological behavior associations](BEHAVIOR-ASSOCIATIONS.md) — the intended classify-once/inherit-capabilities model and its implementation boundary.
+
 - [Nine-layer model](NINE-LAYER-MODEL.md)
 - [Ontology landscape](ONTOLOGY-LANDSCAPE.md)
 - [Theory](THEORY.md)
