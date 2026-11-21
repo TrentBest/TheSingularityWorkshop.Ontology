@@ -219,6 +219,8 @@ Layer IDs are supplied by the ontology owner and remain distinct from their zero
 
 ## Related material
 
+- [Ontological behavior associations](BEHAVIOR-ASSOCIATIONS.md) — how concepts inherit behavior, control, and capability associations without adding classification layers.
+
 - [Ontology theory](THEORY.md)
 - [Ontology landscape](ONTOLOGY-LANDSCAPE.md)
 - [Address-space mathematics](MATHEMATICS.md)
