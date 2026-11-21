@@ -1,5 +1,7 @@
 # The Nine-Layer Ontology
 
+![Canonical nine-layer classification](nine-layer-model.svg)
+
 This document records the Workshop's canonical nine-position semantic classification model, the reason for its shape, its mathematical interpretation, and the boundary between this model and the more general ontology contracts implemented by this package.
 
 The nine layers are a **canonical Workshop model**, not a universal law imposed on every ontology or MicroBundle. The library must remain capable of representing other ranks and structures. The Workshop's own ontology can nevertheless choose nine positions deliberately and consistently.
