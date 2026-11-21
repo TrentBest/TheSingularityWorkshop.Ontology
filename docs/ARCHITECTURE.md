@@ -64,6 +64,8 @@ The current package deliberately separates five kinds of semantic information:
 | `OntologyAddress` | Where is a semantic concept located within a qualified ontology? | How that concept is implemented |
 | `OntologyIndex` | What compact scalar or N-dimensional coordinate identifies the location? | How coordinates are stored physically |
 | `OntologyIndexSpace` | What bounded coordinate space exists, and how can coordinates be mapped to dense offsets? | Whether dense storage should be used |
+| `OntologyRange` | Which half-open semantic interval belongs to one ontology version? | Physical placement or storage |
+| `OntologyCoverage` | Which opaque server identifier is associated with a semantic interval? | Server discovery, routing, availability, or persistence |
 | `OntologyRelationship` | How are two semantic addresses related? | What the predicate means to a particular domain |
 
 `OntologySet` provides the runtime registry for independently versioned definitions without declaring a universal ontology.
