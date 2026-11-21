@@ -68,4 +68,21 @@ public sealed class OntologyRangeTests
 
         Assert.Throws<ArgumentException>(() => coverage.Validate());
     }
+    [Fact]
+    public void Range_contains_inclusive_start_and_excludes_end()
+    {
+        var range = new OntologyRange(
+            42,
+            "1.0.0",
+            OntologyAddress.Create(42, "1.0.0", "start", OntologyIndex.Create(1, 0)),
+            OntologyAddress.Create(42, "1.0.0", "end", OntologyIndex.Create(2, 0)));
+
+        Assert.True(range.Contains(OntologyAddress.Create(42, "1.0.0", "start", OntologyIndex.Create(1, 0))));
+        Assert.True(range.Contains(OntologyAddress.Create(42, "1.0.0", "middle", OntologyIndex.Create(1, ulong.MaxValue))));
+        Assert.False(range.Contains(OntologyAddress.Create(42, "1.0.0", "end", OntologyIndex.Create(2, 0))));
+        Assert.False(range.Contains(OntologyAddress.Create(43, "1.0.0", "other", OntologyIndex.Create(1, 1))));
+        Assert.False(range.Contains(OntologyAddress.Create(42, "2.0.0", "other", OntologyIndex.Create(1, 1))));
+        Assert.False(range.Contains(OntologyAddress.Create(42, "1.0.0", "other", new OntologyIndex(1))));
+    }
+
 }
