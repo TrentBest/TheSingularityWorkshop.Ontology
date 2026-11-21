@@ -232,7 +232,7 @@ If all positions have the same finite extent `N`, then:
 For the illustrative bound `N = 2^{31}-1`:
 
 [
-(2^{31}-1)^9 \approx 2.06 \times 10^{84}
+(2^{31}-1)^9 \approx 9.71 \times 10^{83}
 ]
 
 This figure describes a possible coordinate count under that assumed per-position bound. It does not mean the implementation allocates the product space, nor does it establish that the current `ulong` implementation is limited to signed 31-bit values.
