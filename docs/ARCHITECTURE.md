@@ -93,6 +93,25 @@ The package defines **semantic structure**, not domain knowledge.
 
 It can express an ontology containing chemistry, AEC, animal life, physics, rendering, or any other subject, but it does not embed those subjects into the contract. The eventual Workshop master ontology is therefore content built with these mechanisms, not additional authority inside this package.
 
+
+## Canonical nine-layer classification and architectural graphs
+
+The Workshop's canonical ontology uses the ordered classification positions Paradigm, Domain, Kingdom, Phylum, Class, Order, Family, Genus, and Species. This is a canonical semantic profile, not a fixed-rank requirement on the generic library. Independent ontologies may declare other ranks and structures.
+
+Keep the following graphs and structures separate:
+
+| Structure | What its edges or positions mean | Owner |
+|---|---|---|
+| Nine-position classification | Broad-to-specific semantic placement | Workshop canonical ontology |
+| Ontology relationship graph | Explicit semantic relationships, including cross-ontology links | Ontology/domain definitions |
+| MicroBundle dependency graph | Required capabilities and nested content | MicroBundleDomain |
+| Artifact lookup | Portable reference to stored content/blob | MicroBundleRepository |
+| Runtime composition graph | Resolved local components and execution relationships | FSM_COS |
+
+A tenth classification position is not a substitute for a relationship, a second membership, contextual data, a provider mapping, or a nested MicroBundle. The canonical model's anti-tenth-layer test is documented in [The Nine-Layer Ontology](NINE-LAYER-MODEL.md).
+
+A nine-position semantic coordinate is also not a storage address or runtime handle. Portable identity and exact version are resolved through repository and runtime boundaries; blob indexes and runtime-local numeric handles remain implementation-specific.
+
 ## N-dimensional indexing
 
 OntologyIndex is the compact semantic coordinate.
@@ -188,6 +207,7 @@ That keeps the core small while leaving room for the larger Singularity Workshop
 
 ## Related reading
 
+- [Nine-layer model](NINE-LAYER-MODEL.md)
 - [Theory](THEORY.md)
 - [Address-Space Mathematics](MATHEMATICS.md)
 - [Ontology boundary visual](ontology-boundary.svg)
