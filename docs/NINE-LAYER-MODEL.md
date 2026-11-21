@@ -30,7 +30,7 @@ The position is part of the meaning. A value at position 8 is not interchangeabl
 
 A **Moniker** is an identity or presentation concept, not a tenth layer. A **TopicToken** is a vocabulary/token concept, not a replacement name for the ninth layer. A topic token may identify a value used at a position, including the terminal position, but it does not change the layer schema.
 
-Likewise, gestures, behaviors, capabilities, manifestations, and MicroBundles are not automatically new ontology layers. They may be classified by an ontology, related to ontology addresses, or composed as independent runtime capabilities.
+Likewise, gestures, behaviors, capabilities, manifestations, and MicroBundles are not automatically new ontology layers. They may be classified by an ontology, related to ontology addresses, or composed as independent runtime capabilities. The Workshop's four-universe framing, written as R ∪ F ∪ U ∪ A, is also orthogonal to the nine-position count; it does not add four more classification positions.
 
 ## 2. Why nine positions?
 
@@ -66,7 +66,7 @@ Before adding one, test whether the proposed distinction is already represented 
 
 If one of these expresses the distinction without overloading the semantics of an existing position, a tenth coordinate is not needed. If none can, document the counterexample, show why the distinction is truly orthogonal, and demonstrate the cost of keeping it outside the coordinate before changing the canonical arity.
 
-This is a falsifiable engineering criterion, not a claim of mathematical impossibility. The nine-layer model is sufficient for the Workshop's established classification responsibilities unless a concrete counterexample demonstrates otherwise. It is not asserted to be complete for every possible knowledge domain.
+This is a falsifiable engineering criterion, not a claim of mathematical impossibility. The nine-layer model is sufficient for the Workshop's established classification responsibilities unless a concrete counterexample demonstrates otherwise. It is not asserted to be complete for every possible knowledge domain. The historical design record establishes the selected order and the intended separation of classification from relationships and recursive composition; it does not contain a formal proof that nine is a universal minimum. The mathematics quantifies the capacity of a nine-position model. It does not, by itself, prove that the semantic decomposition must have nine positions.
 
 ## 4. The classification coordinate is not the whole ontology
 
