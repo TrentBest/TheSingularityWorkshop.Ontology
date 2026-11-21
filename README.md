@@ -132,7 +132,7 @@ Ontology depends on MicroBundleDomain, but **does not depend on ProtocolAI or FS
 
 ## Workflow and presentation boundaries
 
-Ontology provides semantic contracts and local validation; it does not schedule workflows, execute tasks, or require a GUI. [FSM_Execution](https://github.com/TrentBest/FSM_Execution) may invoke Ontology operations as workflow capabilities, while FSM_COS composes the participating MicroBundles. See [Architecture](docs/ARCHITECTURE.md#knowledge-operations-are-not-workflow-execution) for the exact ownership boundary and current implemented surface.
+Ontology provides semantic contracts and local validation; it does not schedule workflows, execute tasks, or require a GUI. [FSM_Execution](https://github.com/TrentBest/TheSingularityWorkshop.FSM_Execution) may invoke Ontology operations as workflow capabilities, while FSM_COS composes the participating MicroBundles. See [Architecture](docs/ARCHITECTURE.md#knowledge-operations-are-not-workflow-execution) for the exact ownership boundary and current implemented surface.
 
 ## Integer indexing without a ProtocolAI dependency
 
