@@ -84,6 +84,27 @@ public sealed class OntologyTests
     }
 
     [Fact]
+    public void Workshop_schema_creates_addresses_only_with_nine_coordinates()
+    {
+        var definition = WorkshopOntologySchema.CreateDefinition(
+            9003,
+            "Workshop",
+            "1.0.0",
+            101, 102, 103, 104, 105, 106, 107, 108, 109);
+
+        var address = WorkshopOntologySchema.CreateAddress(
+            definition,
+            "life/animal/fish",
+            OntologyIndex.Create(1, 2, 3, 4, 5, 6, 7, 8, 9));
+
+        Assert.Equal(9, address.Index.Rank);
+        Assert.Equal("ontology://9003/1.0.0/life/animal/fish", address.ToString());
+
+        Assert.Throws<ArgumentException>(() =>
+            WorkshopOntologySchema.CreateAddress(definition, "life/animal/fish", new OntologyIndex(42)));
+    }
+
+    [Fact]
     public void Ontology_allows_arbitrary_layer_count()
     {
         var ontology = new OntologyDefinition(
