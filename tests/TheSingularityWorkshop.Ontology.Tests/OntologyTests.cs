@@ -6,6 +6,62 @@ namespace TheSingularityWorkshop.Ontology.Tests;
 public sealed class OntologyTests
 {
     [Fact]
+    public void Workshop_schema_exposes_the_nine_canonical_layers_in_order()
+    {
+        Assert.Equal(9, WorkshopOntologySchema.LayerCount);
+        Assert.Equal(
+            ["Paradigm", "Domain", "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"],
+            WorkshopOntologySchema.LayerNames);
+
+        var definition = WorkshopOntologySchema.CreateDefinition(
+            9001,
+            "Workshop",
+            "1.0.0",
+            101, 102, 103, 104, 105, 106, 107, 108, 109);
+
+        Assert.True(WorkshopOntologySchema.IsCanonical(definition));
+        Assert.Equal(9, definition.Layers.Count);
+        Assert.Equal(0, definition.Layers[0].Order);
+        Assert.Equal("Paradigm", definition.Layers[0].Name);
+        Assert.Equal(8, definition.Layers[8].Order);
+        Assert.Equal("Species", definition.Layers[8].Name);
+    }
+
+    [Fact]
+    public void Workshop_schema_requires_nine_unique_nonzero_layer_ids()
+    {
+        Assert.Throws<ArgumentException>(() =>
+            WorkshopOntologySchema.CreateLayers(1, 2, 3));
+
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            WorkshopOntologySchema.CreateLayers(1, 2, 3, 4, 5, 6, 7, 8, 0));
+
+        Assert.Throws<ArgumentException>(() =>
+            WorkshopOntologySchema.CreateLayers(1, 2, 3, 4, 5, 6, 7, 8, 8));
+    }
+
+    [Fact]
+    public void Generic_ontology_definitions_remain_free_to_use_other_layer_counts()
+    {
+        var fiveLayerOntology = new OntologyDefinition(
+            100,
+            "FiveLayerExample",
+            "1.0.0",
+            [
+                new(1, "One", 0),
+                new(2, "Two", 1),
+                new(3, "Three", 2),
+                new(4, "Four", 3),
+                new(5, "Five", 4)
+            ]);
+
+        fiveLayerOntology.Validate();
+
+        Assert.Equal(5, fiveLayerOntology.Layers.Count);
+        Assert.False(WorkshopOntologySchema.IsCanonical(fiveLayerOntology));
+    }
+
+    [Fact]
     public void Ontology_allows_arbitrary_layer_count()
     {
         var ontology = new OntologyDefinition(
