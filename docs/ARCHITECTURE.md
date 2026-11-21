@@ -210,6 +210,7 @@ That keeps the core small while leaving room for the larger Singularity Workshop
 ## Related reading
 
 - [Nine-layer model](NINE-LAYER-MODEL.md)
+- [Ontology landscape](ONTOLOGY-LANDSCAPE.md)
 - [Theory](THEORY.md)
 - [Address-Space Mathematics](MATHEMATICS.md)
 - [Ontology boundary visual](ontology-boundary.svg)
