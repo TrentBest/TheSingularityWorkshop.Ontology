@@ -22,6 +22,8 @@ The interval is **[Start, End)**. The start is included; the end is not. Adjacen
 
 Both endpoints must be valid addresses belonging to the declared ontology identity and version. Their N-dimensional indexes must have equal rank, and the start coordinate must precede the end coordinate in lexicographic coordinate order (dimension 0 first).
 
+Use OntologyRange.Contains(address) to test membership. It includes the start, excludes the end, and returns false for addresses qualified by another ontology/version or with a different coordinate rank.
+
 The range does not infer dimension extents or flatten coordinates. If a consumer needs bounded-space membership or row-major offsets, it can use `OntologyIndexSpace` separately. The range's ordering contract is coordinate ordering, not physical placement ordering.
 
 ## Placement-neutral coverage
