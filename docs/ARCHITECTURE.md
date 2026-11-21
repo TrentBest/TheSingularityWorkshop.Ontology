@@ -68,7 +68,7 @@ The current package deliberately separates five kinds of semantic information:
 | `OntologyCoverage` | Which opaque server identifier is associated with a semantic interval? | Server discovery, routing, availability, or persistence |
 | `OntologyRelationship` | How are two semantic addresses related? | What the predicate means to a particular domain |
 
-`OntologySet` provides the runtime registry for independently versioned definitions without declaring a universal ontology.
+`OntologySet` provides the runtime registry for independently versioned definitions without declaring a universal ontology. `WorkshopOntologySchema` provides the canonical nine-layer names/order and validates nine-coordinate address creation without restricting generic ontology definitions.
 
 ### Definition invariants
 
