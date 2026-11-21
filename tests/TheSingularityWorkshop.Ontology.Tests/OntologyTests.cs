@@ -62,6 +62,28 @@ public sealed class OntologyTests
     }
 
     [Fact]
+    public void Workshop_schema_reports_invalid_layer_orders_as_noncanonical()
+    {
+        var invalid = new OntologyDefinition(
+            9002,
+            "InvalidWorkshop",
+            "1.0.0",
+            [
+                new(101, "Paradigm", 0),
+                new(102, "Domain", 1),
+                new(103, "Kingdom", 2),
+                new(104, "Phylum", 3),
+                new(105, "Class", 4),
+                new(106, "Order", 5),
+                new(107, "Family", 6),
+                new(108, "Genus", 7),
+                new(109, "Species", 7)
+            ]);
+
+        Assert.False(WorkshopOntologySchema.IsCanonical(invalid));
+    }
+
+    [Fact]
     public void Ontology_allows_arbitrary_layer_count()
     {
         var ontology = new OntologyDefinition(
