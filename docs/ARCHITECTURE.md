@@ -54,6 +54,34 @@ FSM_COS composes the resulting pieces without owning their ontology.
 The important boundary is that the semantic address does not itself contain the implementation. It identifies meaning. A relationship can connect that meaning to an implementation owned elsewhere.
 
 
+
+## Knowledge operations are not workflow execution
+
+Ontology supplies semantic data and validation operations. It does not own a workflow loop, scheduler, task lifecycle, GUI, or execution policy.
+
+The current public surface supports:
+- validating and constructing ontology definitions and qualified addresses;
+- registering and retrieving definitions through OntologySet;
+- representing and validating semantic relationships;
+- representing scalar/N-dimensional coordinates and optional dense-space conversions;
+- validating half-open ranges and placement-neutral coverage metadata.
+
+It does **not** currently expose a general query language, graph traversal engine, inference engine, distributed lookup service, or asynchronous query scheduler. Do not describe these as implemented merely because the data model can support future consumers.
+
+The ownership split is:
+
+| Responsibility | Owner | Ontology's role |
+|---|---|---|
+| Semantic definitions, addresses, indexes, relationships, ranges | Ontology | Owns the contracts and local validation |
+| Workflow selection, ordering, retries, scheduling, execution lifecycle | FSM_Execution | May invoke an Ontology operation as one workflow capability |
+| MicroBundle composition and runtime assembly | FSM_COS | Composes declared capabilities without interpreting domain meaning |
+| Presentation and user interaction | Optional GUI selected by the host | May present ontology-derived information; is not an Ontology dependency |
+| Artifact persistence and retrieval | MicroBundleRepository or another storage owner | May persist semantic metadata without moving storage behavior into Ontology |
+
+A workflow can call an Ontology-owned operation and use its result in a later step. The workflow engine owns when and why that operation is invoked, what happens on failure, and which subsequent capability runs. Ontology owns only the meaning and behavior of its own contract operation. This is capability invocation, not a second execution runtime inside Ontology.
+
+The project file currently references MicroBundleDomain for bundle integration. It contains no GUI, FSM_Execution, or FSM_COS package/project dependency. Preserve that dependency boundary unless a concrete semantic contract requires a narrowly scoped change.
+
 ## Domain contract inventory
 
 The current package deliberately separates five kinds of semantic information:
