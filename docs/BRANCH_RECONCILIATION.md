@@ -80,3 +80,32 @@ Therefore this audit cannot identify either current branch head as the exact sou
 | `docs/readme-standard` | PR #3 contains unique README guidance not yet present in development. Preserve or explicitly disposition that work first. |
 
 After the owner resolves both PRs and any required documentation integration, refresh this audit from live GitHub refs and verify the inventory again. Do not infer completion from this historical snapshot.
+
+
+## Follow-up status after ontology implementation and documentation work
+
+**Follow-up date:** 2026-11-21  
+**Development head at this follow-up:** `e10d9f6d621dd724cc3da0a285bc83b23e5c9827`
+
+The live branch inventory remains four branches: `master`, `development`, `chore/standardize-ci-ontology`, and `docs/readme-standard`. The live comparison is now `development` 58 commits ahead and 24 behind `master`; the branches remain diverged. No branch was merged, reset, force-pushed, or deleted.
+
+### Changes now present on development
+
+- The quick-start and existing-project guidance from PR #3 has been incorporated into the development README and updated for the supported .NET 8 / .NET 10 targets.
+- The canonical nine-layer model and visual are documented in `docs/NINE-LAYER-MODEL.md` and `docs/nine-layer-model.svg`.
+- The ontology landscape comparison is documented in `docs/ONTOLOGY-LANDSCAPE.md`.
+- `WorkshopOntologySchema` now exposes the canonical layer names/order, requires caller-supplied unique stable layer IDs, and validates nine-coordinate canonical addresses.
+- The generic ontology definition/index contracts still support other layer counts and coordinate ranks.
+- The illustrative `(2^{31}-1)^9` cardinality is corrected to approximately `9.71 × 10^{83}`; nine full-width `ulong` coordinates have `2^{576}` possible tuples.
+- The package and test project target .NET 8 and .NET 10 for normal package builds. When `WorkshopUseRepositorySources=true`, they target .NET 10 to integrate with the current MicroBundleDomain development source, which targets .NET 10.
+
+### Current CI and cleanup disposition
+
+- The build/test/package workflow completed successfully on the code state at commit `fa41e90960df34b38814cc3109b154bbd7747048`, including builds/tests for both `net8.0` and `net10.0`, and source integration against MicroBundleDomain development. Subsequent changes in this follow-up are documentation-only; the latest documentation workflow is being evaluated separately.
+- Sith Policy continues to fail because the live branch inventory contains four branches instead of exactly two.
+- PR #3's unique quick-start content is now present on development, but PR #3 remains open and unmerged. The owner must decide its disposition.
+- PR #2 remains an open draft; its .NET 8-only CI change is superseded by the current multi-target build workflow. The owner must decide its disposition.
+- Neither extra branch is marked READY FOR OWNER DELETION while its pull request remains open.
+- NuGet publication remains explicitly disabled. No package was published.
+
+The release-source question remains unresolved: the exact source commit for the previously published alpha.2 package has not been recovered. Do not reset or align `master` until that evidence is established and the owner authorizes the operation.
