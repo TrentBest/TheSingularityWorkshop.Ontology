@@ -59,6 +59,10 @@ The indexing model follows the same rule:
 
 ## The Workshop's canonical nine-layer model
 
+The reason for nine comes from the familiar seven-rank animal taxonomy. The Workshop retains Kingdom, Phylum, Class, Order, Family, Genus, and Species, then adds **Domain** above Kingdom and **Paradigm** above Domain. Paradigm is intentionally sparse at present; Reality and Fiction are examples of broad framing distinctions that belong there. Domain provides the intermediate upper classification. The resulting nine positions preserve the familiar biological progression while allowing the ontology to classify subjects that are not animals.
+
+This is a modeling rationale, not a claim that biological taxonomy itself has nine ranks or that nine is a universal law.
+
 Generality in the library does not mean the Workshop has no canonical model. The Workshop's chosen semantic classification uses nine ordered positions:
 
 0. **Paradigm** — foundational frame or organizing model.
