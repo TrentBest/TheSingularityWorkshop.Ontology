@@ -34,7 +34,7 @@ Read the architecture and theory first, then run the package tests to inspect th
 
 ## 🟪 05 Documentation and theory
 
-[Canonical nine-layer model](docs/NINE-LAYER-MODEL.md) · [Ontology landscape](docs/ONTOLOGY-LANDSCAPE.md) · [Architecture](docs/ARCHITECTURE.md) · [Theory learning path](docs/theory/README.md) · [Theory](docs/THEORY.md) · [Mathematics](docs/MATHEMATICS.md)
+[Canonical nine-layer model](docs/NINE-LAYER-MODEL.md) · [Ontological behavior associations](docs/BEHAVIOR-ASSOCIATIONS.md) · [Ontology landscape](docs/ONTOLOGY-LANDSCAPE.md) · [Architecture](docs/ARCHITECTURE.md) · [Theory learning path](docs/theory/README.md) · [Theory](docs/THEORY.md) · [Mathematics](docs/MATHEMATICS.md)
 
 ---
 
