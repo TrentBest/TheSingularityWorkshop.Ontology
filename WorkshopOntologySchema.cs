@@ -71,6 +71,27 @@ public static class WorkshopOntologySchema
         return definition;
     }
 
+    /// <summary>Creates a semantic address whose coordinate matches the canonical nine-layer rank.</summary>
+    public static OntologyAddress CreateAddress(
+        OntologyDefinition definition,
+        string path,
+        OntologyIndex index)
+    {
+        ArgumentNullException.ThrowIfNull(definition);
+
+        if (!IsCanonical(definition))
+            throw new ArgumentException("The ontology definition does not use the canonical Workshop schema.", nameof(definition));
+
+        if (index.Rank != LayerCount)
+        {
+            throw new ArgumentException(
+                $"The canonical Workshop schema requires an index of rank {LayerCount}; received rank {index.Rank}.",
+                nameof(index));
+        }
+
+        return definition.Address(path, index);
+    }
+
     /// <summary>Returns whether a valid definition has the canonical layer names and ordering.</summary>
     public static bool IsCanonical(OntologyDefinition definition)
     {
