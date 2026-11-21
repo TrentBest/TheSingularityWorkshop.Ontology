@@ -109,3 +109,40 @@ The live branch inventory remains four branches: `master`, `development`, `chore
 - NuGet publication remains explicitly disabled. No package was published.
 
 The release-source question remains unresolved: the exact source commit for the previously published alpha.2 package has not been recovered. Do not reset or align `master` until that evidence is established and the owner authorizes the operation.
+
+
+## Live recheck after range, execution-boundary, and theory work
+
+**Recheck date:** 2026-11-21  
+**Development head:** `b4350ebe57a522889892e5a361927ccce8218966`
+
+The branch inventory still contains exactly four refs:
+
+| Branch | Head |
+|---|---|
+| `development` | `b4350ebe57a522889892e5a361927ccce8218966` |
+| `master` | `395c2eb5e82752ef372a248de49d27998c213f72` |
+| `chore/standardize-ci-ontology` | `f8b4111174d0b51f12e6fdb855679d35ad17c042` |
+| `docs/readme-standard` | `61bb7667081b23133f95d9aceb95432c5b8fe948` |
+
+The current `development` versus `master` comparison is **72 commits ahead / 24 behind**, with diverged history. This is not evidence that master should move: the exact alpha.2 NuGet publication source is still unresolved, and alpha.3 is still only source-declared. Preserve both refs.
+
+### Pull-request branch recheck
+
+- PR #2 / `chore/standardize-ci-ontology`: 1 commit ahead / 71 behind; the only changed file remains `.github/workflows/build.yml`. Its .NET 8-only CI variant is superseded by the current multi-target .NET 8/.NET 10 build, source integration, coverage, and artifact workflow.
+- PR #3 / `docs/readme-standard`: 2 commits ahead / 71 behind; it changes README and the build workflow. Development now has a current quick start and integration guide, but the PR branch still carries an older four-dimensional tutorial variant and a .NET 8-only workflow line. Those exact additions are not a clean fast-forward candidate; compare and reconcile only if the owner wants to preserve the alternate example.
+
+Both PRs remain open and unmerged. No branch is **READY FOR OWNER DELETION** while its PR remains open. The extra refs remain an explicit blocker for the permanent two-branch policy.
+
+### Latest verification
+
+- [Build run 44895341173](https://github.com/TrentBest/TheSingularityWorkshop.Ontology/actions/runs/44895341173) passed on exact head `b4350ebe57a522889892e5a361927ccce8218966`: build, tests/coverage, package artifact, and MicroBundleDomain source integration succeeded.
+- [Sith Policy run 44895341175](https://github.com/TrentBest/TheSingularityWorkshop.Ontology/actions/runs/44895341175) failed because the live inventory still contains four branches instead of exactly `master` and `development`.
+- The publish workflow's normal push run skipped both the dispatch-only Sith prerequisite and NuGet publish job. NuGet publication remains hard-disabled; no package was published.
+
+### Additional development work since the prior follow-up
+
+- Added validated half-open semantic ranges, membership checks, and placement-neutral server coverage metadata (Issue #1).
+- Clarified that Ontology owns semantic contracts and local validation, while FSM_Execution owns workflow scheduling/execution, FSM_COS owns composition, and GUI remains optional (Issue #4).
+- Added an indexed four-chapter modular theory learning path (Issue #6).
+- No merge, branch deletion, reset, force-push, deployment, or publication occurred.
