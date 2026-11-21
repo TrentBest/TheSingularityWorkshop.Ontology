@@ -76,14 +76,22 @@ public static class WorkshopOntologySchema
     {
         ArgumentNullException.ThrowIfNull(definition);
 
-        if (definition.Layers.Count != LayerCount)
+        if (definition.Layers is null || definition.Layers.Count != LayerCount)
             return false;
+
+        if (definition.Layers.Any(static layer => layer is null))
+            return false;
+
+        var orderedLayers = definition.Layers.OrderBy(static layer => layer.Order).ToArray();
 
         for (var order = 0; order < LayerCount; order++)
         {
-            var layer = definition.Layers.SingleOrDefault(candidate => candidate.Order == order);
-            if (layer is null || !string.Equals(layer.Name, Names[order], StringComparison.Ordinal))
+            var layer = orderedLayers[order];
+            if (layer.Order != order ||
+                !string.Equals(layer.Name, Names[order], StringComparison.Ordinal))
+            {
                 return false;
+            }
         }
 
         return true;
