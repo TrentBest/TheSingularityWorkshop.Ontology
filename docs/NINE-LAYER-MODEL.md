@@ -130,7 +130,7 @@ If every position has the same extent `N`, then:
 For the illustrative bound `N = 2^{31}-1`:
 
 [
-|\Omega_9| = (2^{31}-1)^9 \approx 2.06 \times 10^{84}
+|\Omega_9| = (2^{31}-1)^9 \approx 9.71 \times 10^{83}
 ]
 
 This is a count of possible coordinates under that assumed bound. It is not a claim that the implementation currently allocates that many values, that each layer uses this exact bound, or that a signed 31-bit limit is enforced by the current `ulong` coordinate type.
