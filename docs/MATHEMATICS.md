@@ -207,3 +207,57 @@ The architecture therefore separates:
 That lets a developer choose five layers, nine layers, several independent ontologies, a completely different coordinate model, or no ontology at all.
 
 > **A huge address space is useful precisely because we do not have to build the whole thing.**
+
+
+## 9. The canonical nine-position coordinate
+
+The Workshop's canonical classification model has nine ordered positions. If position `i` admits `N_i` values, its coordinate space is the Cartesian product:
+
+[
+\Omega_9 = N_0 \times N_1 \times \cdots \times N_8
+]
+
+and its cardinality is:
+
+[
+|\Omega_9| = \prod_{i=0}^{8} N_i
+]
+
+If all positions have the same finite extent `N`, then:
+
+[
+|\Omega_9| = N^9
+]
+
+For the illustrative bound `N = 2^{31}-1`:
+
+[
+(2^{31}-1)^9 \approx 2.06 \times 10^{84}
+]
+
+This figure describes a possible coordinate count under that assumed per-position bound. It does not mean the implementation allocates the product space, nor does it establish that the current `ulong` implementation is limited to signed 31-bit values.
+
+The generic implementation uses `ulong` components. If each of nine positions admits every value from zero through `ulong.MaxValue`, the full-width theoretical space is:
+
+[
+(2^{64})^9 = 2^{576}
+]
+
+These are two different parameterizations of the same product-space model. The bound must be stated whenever a cardinality is quoted.
+
+### Why the exponent is nine
+
+The exponent is the number of independent coordinate positions in the canonical Workshop classification tuple. It is not the number of ontology relationships, the number of MicroBundle dependencies, or the depth of a runtime composition graph.
+
+Adding a tenth position would multiply the address space by that position's extent, but a larger number of possible coordinates is not itself a reason to add a semantic dimension. A new position is warranted only when a real, independent classification axis cannot be represented through existing positions, multiple membership, separate ontologies, relationships, context, or MicroBundle composition. See [The Nine-Layer Ontology](NINE-LAYER-MODEL.md) for the engineering sufficiency test.
+
+### Coordinate, path, and runtime handle are different values
+
+A nine-position coordinate is an ordered semantic tuple. It must be interpreted with the ontology identity and version that define the positions.
+
+A portable semantic address (for example, an ontology-qualified path) is not the same thing as a coordinate tuple. A repository's blob index is a storage lookup value, not a semantic coordinate. An FSM_COS numeric handle is a runtime-local reference, not a portable identity. These values may be mapped to one another by explicit, version-aware resolution, but they must not be substituted for one another.
+
+### Sparse reality
+
+Even if the theoretical product space is enormous, only a small subset may be defined or materialized. A sparse ontology stores definitions, relationships, and artifacts that actually exist. The mathematical address space describes the set of possible coordinates; it does not prescribe dense allocation.
+
