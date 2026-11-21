@@ -160,6 +160,27 @@ That separation is intentional:
 
 When an address claims to use the canonical Workshop model, its definition and coordinate must be validated against that model's declared nine-position schema. Generic ontology contracts remain generic.
 
+
+### Enforcing the canonical profile in code
+
+The generic contracts remain flexible. Code that intends to create a canonical Workshop address should use `WorkshopOntologySchema`, which centralizes the nine names and order and validates the coordinate rank:
+
+```csharp
+var ontology = WorkshopOntologySchema.CreateDefinition(
+    1001,
+    "Workshop",
+    "1.0.0",
+    101, 102, 103, 104, 105, 106, 107, 108, 109);
+
+var index = OntologyIndex.Create(1, 2, 3, 4, 5, 6, 7, 8, 9);
+var address = WorkshopOntologySchema.CreateAddress(
+    ontology,
+    "life/animal/fish",
+    index);
+```
+
+Layer IDs are supplied by the ontology owner and remain distinct from their zero-based positions. The helper rejects a definition that does not have the canonical nine names/order and rejects an index whose rank is not nine. This prevents a generic scalar or four-dimensional index from being silently described as a complete canonical nine-layer coordinate.
+
 ## 8. Design invariants
 
 1. Layer order is explicit and stable within a published ontology version.
