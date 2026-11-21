@@ -72,6 +72,21 @@ For example, an application could express a fish's swimming concept as an ontolo
 
 Read the deeper design rationale in [docs/THEORY.md](docs/THEORY.md) and the implementation boundary in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
+## Ontology-supplied behavior: classify once, inherit capabilities
+
+Ontology is intended to do more than label an asset. It should also associate concepts with the behaviors, controls, and capabilities that belong to them. A newly authored Dog asset should receive the ordinary dog behavior foundation—such as running, locomotion, and applicable controls—through its ontology associations, rather than requiring every asset author to compose that foundation again.
+
+A SuperDog can specialize that foundation: its cape, flight, and crime-fighting capabilities extend the inherited dog behavior set. The creator supplies what is genuinely novel; the ontology provides the semantic path to the behaviors already associated with the inherited concepts.
+
+The intended separation is:
+
+- **Ontology:** classifies concepts and declares behavior/control/capability associations, including inheritance and specialization semantics.
+- **Provider MicroBundles:** implement the associated behaviors and controls.
+- **FSM_COS:** resolves compatible providers and composes the runtime capability set for an experience.
+- **Experience/application:** supplies context and any explicit choices or overrides.
+
+This is not yet an implemented automatic behavior system in this package. Provider resolution, inheritance precedence, conflict handling, required/optional capabilities, explicit disabling and overrides, and exact version compatibility need formal contracts and tests. Ontology should describe what applies; it should not embed arbitrary executable behavior or become a second runtime.
+
 ## Ranges and placement-neutral coverage
 
 [Ontology ranges and coverage](docs/ONTOLOGY-RANGES.md) define validated half-open semantic intervals and an opaque server-coverage metadata record. Ontology does not discover servers, route requests, or perform storage.
