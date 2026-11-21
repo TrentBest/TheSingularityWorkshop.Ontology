@@ -82,6 +82,15 @@ public static class WorkshopOntologySchema
         if (definition.Layers.Any(static layer => layer is null))
             return false;
 
+        try
+        {
+            definition.Validate();
+        }
+        catch (ArgumentException)
+        {
+            return false;
+        }
+
         var orderedLayers = definition.Layers.OrderBy(static layer => layer.Order).ToArray();
 
         for (var order = 0; order < LayerCount; order++)
