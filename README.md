@@ -34,7 +34,7 @@ Read the architecture and theory first, then run the package tests to inspect th
 
 ## 🟪 05 Documentation and theory
 
-[Architecture](docs/ARCHITECTURE.md) · [Theory](docs/THEORY.md)
+[Canonical nine-layer model](docs/NINE-LAYER-MODEL.md) · [Architecture](docs/ARCHITECTURE.md) · [Theory](docs/THEORY.md) · [Mathematics](docs/MATHEMATICS.md)
 
 ---
 
@@ -137,7 +137,7 @@ A layered ontology can express the location as coordinates:
 [2, 14, 7, 3, 91]
 ```
 
-The number of dimensions is determined by the ontology using them. The core does not assume that every ontology has the same rank.
+The number of dimensions is determined by the ontology using them. The core does not assume that every ontology has the same rank. The Workshop's own canonical classification uses nine ordered positions (Paradigm → Domain → Kingdom → Phylum → Class → Order → Family → Genus → Species); that canonical model is documented separately and is not imposed on independent ontologies.
 
 This gives us a compact runtime/storage representation while preserving the human-readable semantic path for authoring, diagnostics, and explanation.
 
@@ -299,6 +299,7 @@ This makes the Ontology package a concrete example of the Workshop's broader pri
 
 ## Documentation map
 
+- **[Nine-layer model](docs/NINE-LAYER-MODEL.md)** — the canonical Workshop layer names, why nine, why not ten, and the mathematical model.
 - **[Theory](docs/THEORY.md)** — why semantic structure is optional and how meaning can become addressable.
 - **[Architecture](docs/ARCHITECTURE.md)** — package boundaries and semantic resolution.
 - **[Mathematics](docs/MATHEMATICS.md)** — N-dimensional address-space cardinality and dense-array mapping.
