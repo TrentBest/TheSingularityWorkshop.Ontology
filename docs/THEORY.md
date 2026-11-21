@@ -79,7 +79,7 @@ These are engineering semantics that borrow a familiar broad-to-specific progres
 
 Moniker and TopicToken are concepts, not layer names. Gestures, behaviors, capabilities, and nested MicroBundles are not automatically additional layers.
 
-See **[The Nine-Layer Ontology](NINE-LAYER-MODEL.md)** for the full rationale, layer definitions, anti-tenth-layer test, recursive composition boundary, and mathematical model.
+See **[The Nine-Layer Ontology](NINE-LAYER-MODEL.md)** for the full rationale, layer definitions, anti-tenth-layer test, recursive composition boundary, and mathematical model. See the **[Ontology Landscape](ONTOLOGY-LANDSCAPE.md)** for a comparison with BFO, DOLCE, GFO, UFO, and SUMO.
 
 ## Identity, coordinates, and address space
 
