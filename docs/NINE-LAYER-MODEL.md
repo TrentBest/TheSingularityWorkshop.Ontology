@@ -46,11 +46,7 @@ The two upper positions are intentionally not expected to be as densely populate
 
 The animal taxonomy is the structural inspiration, not a claim that every domain is literally biological. The Workshop reuses the progression as a general semantic classification pattern. A physics concept, a fictional character, a building component, and an animal can all be classified without pretending they are biological species.
 
-Nine is therefore not an arbitrary mathematical convenience: it records the deliberate extension of a seven-rank model by two upper framing positions. It remains an engineering and modeling choice rather than a theorem that nature contains exactly nine universal categories.
-
-Nine is the Workshop's chosen canonical semantic decomposition: one broad framing position followed by eight progressively more specific classification positions. It gives the canonical model a stable, fixed-arity address while leaving the library's general contracts free to support other ontologies.
-
-The choice is an engineering and modeling decision, not a theorem that nature contains exactly nine universal categories. Existing upper-ontology and knowledge-representation traditions—including BFO, DOLCE, GFO, UFO, and SUMO—offer useful ideas and competing commitments; their existence does not establish that every useful ontology must have nine layers. The Workshop's nine positions should be defended by the work they do in this system, not by claiming that other ontologies prove the number.
+Nine is therefore not an arbitrary mathematical convenience: it records the deliberate extension of a seven-rank model by two upper framing positions. It remains an engineering and modeling choice rather than a theorem that nature contains exactly nine universal categories. Existing upper-ontology and knowledge-representation traditions—including BFO, DOLCE, GFO, UFO, and SUMO—offer useful ideas and competing commitments; their existence does not establish that every useful ontology must have nine layers. The Workshop's nine positions should be defended by the work they do in this system, not by claiming that other ontologies prove the number.
 
 The practical advantages are:
 
@@ -83,6 +79,21 @@ If one of these expresses the distinction without overloading the semantics of a
 This is a falsifiable engineering criterion, not a claim of mathematical impossibility. The nine-layer model is sufficient for the Workshop's established classification responsibilities unless a concrete counterexample demonstrates otherwise. It is not asserted to be complete for every possible knowledge domain. The historical design record establishes the selected order and the intended separation of classification from relationships and recursive composition; it does not contain a formal proof that nine is a universal minimum. The mathematics quantifies the capacity of a nine-position model. It does not, by itself, prove that the semantic decomposition must have nine positions.
 
 ## 4. The classification coordinate is not the whole ontology
+
+### Ontology also supplies behavior
+
+The ontology is intended to do more than label an asset. It should associate concepts with the behaviors, controls, and capabilities that naturally come with them. A newly authored Dog asset should receive the ordinary dog behavior foundation—such as running, locomotion, and applicable controls—through its ontology associations, rather than requiring every asset author to compose that foundation again.
+
+A SuperDog can specialize that foundation: its cape, flight, and crime-fighting capabilities extend the inherited dog behavior set. The creator supplies what is genuinely novel; the ontology provides the semantic path to the behaviors already associated with inherited concepts.
+
+The intended separation is:
+
+- **Ontology:** classifies concepts and declares behavior/control/capability associations, including inheritance and specialization semantics.
+- **Provider MicroBundles:** implement the associated behaviors and controls.
+- **FSM_COS:** resolves compatible providers and composes the runtime capability set for an experience.
+- **Experience/application:** supplies context and any explicit choices or overrides.
+
+This is not yet an implemented automatic behavior system in this package. Provider resolution, inheritance precedence, conflict handling, required/optional capabilities, explicit disabling and overrides, and exact version compatibility need formal contracts and tests. Ontology should describe what applies; it should not embed arbitrary executable behavior or become a second runtime.
 
 Several structures must remain distinct:
 
