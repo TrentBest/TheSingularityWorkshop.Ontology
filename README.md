@@ -130,6 +130,10 @@ Reference Ontology only where your domain benefits from semantic addresses, inde
 
 Ontology depends on MicroBundleDomain, but **does not depend on ProtocolAI or FSM_COS**. A consumer may use ProtocolAI to map its own vocabulary to integer IDs, but that mapping is optional and belongs on the consumer side. FSM_COS can compose resolved MicroBundles without hard-coding ontology-specific meaning.
 
+## Workflow and presentation boundaries
+
+Ontology provides semantic contracts and local validation; it does not schedule workflows, execute tasks, or require a GUI. [FSM_Execution](https://github.com/TrentBest/FSM_Execution) may invoke Ontology operations as workflow capabilities, while FSM_COS composes the participating MicroBundles. See [Architecture](docs/ARCHITECTURE.md#knowledge-operations-are-not-workflow-execution) for the exact ownership boundary and current implemented surface.
+
 ## Integer indexing without a ProtocolAI dependency
 
 Ontology uses a deliberately small, protocol-neutral indexing primitive: `OntologyIndex`.
