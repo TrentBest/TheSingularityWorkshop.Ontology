@@ -24,3 +24,14 @@ This policy does not grant blanket permission to publish, force-push, replace a 
 - Do not claim a build, test, release, or integration succeeded without current evidence.
 - Do not discard useful work merely because a branch is old or divergent. Reconcile it and report exact safe-to-delete candidates; the owner performs deletion.
 - Prefer implementation and verifiable results over speculative plans.
+
+## Ontology-specific semantic boundaries
+
+- The Workshop's canonical classification profile is the nine ordered positions: Paradigm, Domain, Kingdom, Phylum, Class, Order, Family, Genus, Species. See `docs/NINE-LAYER-MODEL.md`.
+- The nine-position profile is canonical Workshop content, not a global rank restriction. Preserve generic N-dimensional and independently versioned ontology support.
+- Do not add a tenth classification position without documenting a concrete distinction that cannot be represented by an existing position, multiple membership, another ontology, a relationship, context, a manifestation/provider mapping, or MicroBundle composition.
+- Moniker and TopicToken are concepts, not layer names. Gestures, behaviors, relationships, and recursively nested MicroBundles are not automatically ontology layers.
+- Keep classification coordinates, portable semantic addresses, repository blob indexes, and FSM_COS runtime-local handles distinct.
+- Keep the ontology relationship graph separate from the MicroBundle dependency/composition graph.
+- When documenting cardinality, state the per-dimension extent. The illustrative `(2^31 - 1)^9` bound is approximately `9.71 × 10^83`; nine complete `ulong` dimensions yield `2^576`. These are different models, not interchangeable claims.
+- Canonical layer IDs must be supplied as stable identifiers by the owning ontology definition; do not silently derive portable IDs from array positions.
