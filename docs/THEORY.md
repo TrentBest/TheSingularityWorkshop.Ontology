@@ -85,6 +85,8 @@ Moniker and TopicToken are concepts, not layer names. Gestures, behaviors, capab
 
 See **[The Nine-Layer Ontology](NINE-LAYER-MODEL.md)** for the full rationale, layer definitions, anti-tenth-layer test, recursive composition boundary, and mathematical model. See the **[Ontology Landscape](ONTOLOGY-LANDSCAPE.md)** for a comparison with BFO, DOLCE, GFO, UFO, and SUMO.
 
+See **[Ontological Behavior Associations](BEHAVIOR-ASSOCIATIONS.md)** for the intended relationship between classification, inherited behavior contracts, provider MicroBundles, and runtime composition.
+
 ## Identity, coordinates, and address space
 
 An address is qualified by ontology identity and version:
