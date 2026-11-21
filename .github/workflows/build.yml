@@ -81,10 +81,46 @@ jobs:
           name: ontology-test-results
           path: ./TestResults/*
 
-  publish_nuget:
-    needs: build-and-test
+  verify-sith-branch-policy:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish == true }}
     runs-on: ubuntu-24.04
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish == true && false }}
+    steps:
+      - name: Verify live remote branch inventory
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch_file="$(mktemp)"
+          trap 'rm -f "$branch_file"' EXIT
+
+          if ! gh api --paginate "repos/$GH_REPO/branches?per_page=100" --jq '.[].name' > "$branch_file"; then
+            echo "::error::Unable to verify the live remote branch inventory."
+            exit 1
+          fi
+
+          mapfile -t branches < <(sort -u "$branch_file")
+          expected=("development" "master")
+
+          printf 'Observed branches:\n'
+          printf '  %s\n' "${branches[@]}"
+          printf 'Required branches:\n'
+          printf '  %s\n' "${expected[@]}"
+
+          if [[ "${#branches[@]}" -ne 2 ||
+                "${branches[0]:-}" != "development" ||
+                "${branches[1]:-}" != "master" ]]; then
+            echo "::error::NuGet publication requires exactly the remote branches master and development."
+            exit 1
+          fi
+
+          echo "Live branch inventory is compliant."
+
+  publish_nuget:
+    needs: [build-and-test, verify-sith-branch-policy]
+    runs-on: ubuntu-24.04
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish == true && needs.verify-sith-branch-policy.result == 'success' && false }}
     permissions:
       contents: read
       id-token: write
