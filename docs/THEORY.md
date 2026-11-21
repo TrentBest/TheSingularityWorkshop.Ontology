@@ -57,6 +57,30 @@ The indexing model follows the same rule:
 - the rank is chosen by the consuming ontology;
 - an optional index-space model can map coordinates into dense-array offsets.
 
+## The Workshop's canonical nine-layer model
+
+Generality in the library does not mean the Workshop has no canonical model. The Workshop's chosen semantic classification uses nine ordered positions:
+
+0. **Paradigm** — foundational frame or organizing model.
+1. **Domain** — broad field of knowledge or activity.
+2. **Kingdom** — major family of subject matter.
+3. **Phylum** — structural or organizational division.
+4. **Class** — shared defining characteristics.
+5. **Order** — more specific organization.
+6. **Family** — closely related concepts.
+7. **Genus** — near-specific conceptual kind.
+8. **Species** — terminal classification position.
+
+These are engineering semantics that borrow a familiar broad-to-specific progression; they are not a claim that every domain is biological taxonomy. The nine positions form a stable classification coordinate for the Workshop's canonical ontology, not a limit on relationships, composition depth, or all independent ontologies.
+
+**Why nine?** The model reserves one broad framing position and eight progressively more specific classification positions. This gives a stable fixed-arity coordinate while keeping relationships, context, manifestations, and recursive MicroBundle composition orthogonal. It is a design choice supported by the Workshop's modeling needs, not a universal theorem that all knowledge has nine levels.
+
+**Why not ten?** A proposed tenth position must represent a genuinely independent classification distinction that cannot be expressed by an existing position, multiple membership, another ontology, an explicit relationship, contextual data, a provider/manifestation mapping, or a MicroBundle capability/dependency. Without such a counterexample, the tenth position duplicates or confuses an existing responsibility. This is a falsifiable engineering sufficiency criterion, not a proof of universal completeness.
+
+Moniker and TopicToken are concepts, not layer names. Gestures, behaviors, capabilities, and nested MicroBundles are not automatically additional layers.
+
+See **[The Nine-Layer Ontology](NINE-LAYER-MODEL.md)** for the full rationale, layer definitions, anti-tenth-layer test, recursive composition boundary, and mathematical model.
+
 ## Identity, coordinates, and address space
 
 An address is qualified by ontology identity and version:
@@ -219,7 +243,7 @@ It does not prescribe:
 - a universal ontology language;
 - a universal reasoning engine;
 - a mandatory graph database;
-- a fixed number of layers;
+- a fixed number of layers for every ontology;
 - a single global taxonomy;
 - a universal behavior-provider interface;
 - a physical storage layout;
