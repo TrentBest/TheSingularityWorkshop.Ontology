@@ -72,6 +72,10 @@ For example, an application could express a fish's swimming concept as an ontolo
 
 Read the deeper design rationale in [docs/THEORY.md](docs/THEORY.md) and the implementation boundary in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
+## Ranges and placement-neutral coverage
+
+[Ontology ranges and coverage](docs/ONTOLOGY-RANGES.md) define validated half-open semantic intervals and an opaque server-coverage metadata record. Ontology does not discover servers, route requests, or perform storage.
+
 ## Integer indexing without a ProtocolAI dependency
 
 Ontology uses a deliberately small, protocol-neutral indexing primitive: `OntologyIndex`.
