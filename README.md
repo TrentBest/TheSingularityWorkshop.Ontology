@@ -34,7 +34,7 @@ Read the architecture and theory first, then run the package tests to inspect th
 
 ## 🟪 05 Documentation and theory
 
-[Canonical nine-layer model](docs/NINE-LAYER-MODEL.md) · [Architecture](docs/ARCHITECTURE.md) · [Theory](docs/THEORY.md) · [Mathematics](docs/MATHEMATICS.md)
+[Canonical nine-layer model](docs/NINE-LAYER-MODEL.md) · [Ontology landscape](docs/ONTOLOGY-LANDSCAPE.md) · [Architecture](docs/ARCHITECTURE.md) · [Theory](docs/THEORY.md) · [Mathematics](docs/MATHEMATICS.md)
 
 ---
 
@@ -359,6 +359,7 @@ This makes the Ontology package a concrete example of the Workshop's broader pri
 
 - **[Nine-layer model](docs/NINE-LAYER-MODEL.md)** — the canonical Workshop layer names, why nine, why not ten, and the mathematical model.
 - **[Nine-layer visual](docs/nine-layer-model.svg)** — a visual map of classification and orthogonal structures.
+- **[Ontology landscape](docs/ONTOLOGY-LANDSCAPE.md)** — how BFO, DOLCE, GFO, UFO, and SUMO relate to the Workshop's classification model.
 - **[Theory](docs/THEORY.md)** — why semantic structure is optional and how meaning can become addressable.
 - **[Architecture](docs/ARCHITECTURE.md)** — package boundaries and semantic resolution.
 - **[Mathematics](docs/MATHEMATICS.md)** — N-dimensional address-space cardinality and dense-array mapping.
