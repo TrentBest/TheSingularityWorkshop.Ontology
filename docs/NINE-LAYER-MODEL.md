@@ -172,6 +172,22 @@ The two calculations answer different questions: the first is a bounded-domain d
 
 A coordinate is an element of the product space. A semantic path, ontology ID, version, or relationship is additional identity/context; it is not automatically one of the nine numeric coordinates.
 
+### Creator-scale multiplicity: many independent SuperDogs
+
+The address-space capacity is useful for a practical reason: the same broad concept can have many independently authored definitions. Hold the first eight coordinates fixed to describe the same broad SuperDog classification. If the terminal coordinate has `int.MaxValue` available positive values, then the ninth position can distinguish:
+
+$
+2^{31}-1 = 2,147,483,647
+$
+
+different complete addresses under that same eight-coordinate prefix.
+
+That means, in theory, up to `int.MaxValue` creators can each have a distinct address for their own SuperDog definition without colliding with one another. Their entries can share the broad classification while retaining separate identities, assets, behavior specializations, and provenance. The creator is not forced to invent a new ontology layer just to distinguish their authored instance/definition.
+
+The capacity alone does not assign unique addresses. The ontology/version namespace needs a uniqueness contract: for example, a coordinated allocator, reserved ranges, or a creator-qualified identity scheme. If two disconnected creators independently select the same complete address, a collision is still possible. The mathematics establishes that there are enough slots; the allocation and identity rules ensure that each creator receives a distinct one.
+
+Creator identity and authorship provenance remain explicit identity/metadata concerns, not a tenth classification layer. This example illustrates how many separately addressable definitions can inhabit one shared semantic classification.
+
 ## 7. Canonical model versus general-purpose library
 
 The package must not hard-code nine as the only valid rank. `OntologyDefinition` declares the layers belonging to a particular ontology, while `OntologyIndex` and `OntologyIndexSpace` provide scalar and N-dimensional coordinate mechanisms.
