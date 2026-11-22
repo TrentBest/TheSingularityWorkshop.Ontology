@@ -42,9 +42,11 @@ The Workshop keeps that recognizable seven-rank progression and adds a broad **D
 
 `Paradigm → Domain → Kingdom → Phylum → Class → Order → Family → Genus → Species`.
 
-The two upper positions are intentionally not expected to be as densely populated as the biological ranks. Paradigm is especially sparse today: distinctions such as **Reality** and **Fiction** illustrate the kind of high-level framing it can hold. Sparsity is expected at the top of a broad-to-specific classification; it is not evidence that the positions are unnecessary. Domain provides the additional level between that framing and the familiar biological sequence.
+The first position is intended to distinguish foundational frames such as **Reality**, **Fiction**, **Abstraction**, and **Utility**—and potentially other frames not yet identified. These are not merely labels in a single subject tree: each frame can open into its own nested domains and subtrees. Domain is the next broad organizing level, but the exact semantic interpretation of every early transition is still being explored.
 
-The animal taxonomy is the structural inspiration, not a claim that every domain is literally biological. The Workshop reuses the progression as a general semantic classification pattern. A physics concept, a fictional character, a building component, and an animal can all be classified without pretending they are biological species.
+The familiar animal taxonomy supplied the seven-rank structural inspiration. The Workshop is not claiming that every subject is biological, or that the animal kingdom is the parent of every other kind of thing. The animal kingdom ontology and an ontology of things are examples of distinct branches that can sit beside one another within the broader semantic space. The exact organizing position immediately above those branches remains an open modeling question; this document deliberately does not pretend that the question has already been settled.
+
+Accordingly, the nine ordered positions remain the current canonical coordinate shape and the biological rank names remain the chosen mnemonic progression, but some of the upper-level semantics are provisional. The Workshop should refine those meanings through real branches and counterexamples rather than force every subject into an overly literal biological analogy.
 
 Nine is therefore not an arbitrary mathematical convenience: it records the deliberate extension of a seven-rank model by two upper framing positions. It remains an engineering and modeling choice rather than a theorem that nature contains exactly nine universal categories. Existing upper-ontology and knowledge-representation traditions—including BFO, DOLCE, GFO, UFO, and SUMO—offer useful ideas and competing commitments; their existence does not establish that every useful ontology must have nine layers. The Workshop's nine positions should be defended by the work they do in this system, not by claiming that other ontologies prove the number.
 
@@ -187,6 +189,45 @@ That means, in theory, up to `int.MaxValue` creators can each have a distinct ad
 The capacity alone does not assign unique addresses. The ontology/version namespace needs a uniqueness contract: for example, a coordinated allocator, reserved ranges, or a creator-qualified identity scheme. If two disconnected creators independently select the same complete address, a collision is still possible. The mathematics establishes that there are enough slots; the allocation and identity rules ensure that each creator receives a distinct one.
 
 Creator identity and authorship provenance remain explicit identity/metadata concerns, not a tenth classification layer. This example illustrates how many separately addressable definitions can inhabit one shared semantic classification.
+
+## External semantic addresses and Experience-local runtime indexes
+
+The enormous ontology address space is the external semantic reference system. It is not the data structure that FSM_COS must repeatedly traverse while executing an Experience.
+
+An Experience declares the MicroBundles it needs and their load sequence. During preparation, that ordered bundle set is resolved into a compact, Experience-local integer index space. A bundle's local index is determined by its position in that Experience's resolved load sequence (subject to the Experience's explicit ordering contract). The local index maps back to the bundle's portable string ontology identity for external connection, diagnostics, persistence, and exchange.
+
+Conceptually:
+
+```text
+External semantic world
+  ontology string / qualified address
+                |
+                v
+       repository resolution
+                |
+                v
+Experience manifest: ordered MicroBundles
+  [Bundle A, Bundle B, Bundle C, ...]
+                |
+                v
+      compact local index map
+  [A -> 0, B -> 1, C -> 2, ...]
+                |
+                v
+       FSM_COS runtime execution
+          integer indexing
+```
+
+This creates two deliberately different address domains:
+
+- **Portable semantic identity:** qualified, human-readable, ontology-backed identity that can be exchanged beyond one process or Experience.
+- **Experience-local runtime index:** compact integer identity valid within the prepared Experience/runtime mapping.
+
+The runtime should use the local integer form on hot paths. It should not repeatedly parse or compare long ontology strings to identify a loaded bundle. When something crosses the Experience boundary, the mapping translates the local integer back to its portable semantic identity. A local index is not globally meaningful and must not be persisted or exchanged as though it were the ontology address.
+
+The Experience's load sequence is therefore significant: it defines the deterministic local mapping for that Experience. If load order changes, the local indexes may change; portable ontology identities do not. Any persisted data that outlives the Experience must retain portable identity (and exact version), not only the local integer.
+
+This is a design description of the intended architecture, not a claim that this package currently implements Experience loading or FSM_COS runtime indexing. The Ontology package owns the portable semantic contracts and coordinate mechanisms. Experience owns its declared bundle set and ordering. Repository resolves portable references to artifacts. FSM_COS owns the prepared local mapping and integer-first runtime composition.
 
 ## 7. Canonical model versus general-purpose library
 
