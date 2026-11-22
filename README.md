@@ -277,6 +277,31 @@ The address can additionally carry its compact `OntologyIndex` without replacing
 
 An ontology relationship can connect that semantic concept to a manifestation such as a behavior, animation, simulation rule, or UI affordance.
 
+## Portable ontology references, integer-first runtime
+
+The ontology address space is intentionally much larger than any one Experience needs to load. Its string/qualified addresses are portable external references: they let independent creators and systems refer to the same semantic world without requiring the runtime to carry those strings through every operation.
+
+An Experience declares its MicroBundles and their load sequence. Preparation resolves that ordered set into a compact local integer index mapping. FSM_COS then uses those integers for fast runtime composition and access. The Experience mapping translates each local integer back to its portable string ontology identity whenever communication crosses the runtime boundary.
+
+```text
+portable ontology string -> repository artifact -> Experience load sequence
+                                                   |
+                                                   v
+                                       local integer index map
+                                                   |
+                                                   v
+                                      FSM_COS integer runtime
+                                                   |
+                                                   v
+                                     portable identity on exit
+```
+
+These identities are deliberately not interchangeable. A local integer is meaningful only inside its prepared Experience mapping; persistent and external references retain portable ontology identity and exact version. The Ontology package defines the semantic side of this boundary; Experience and FSM_COS own preparation and runtime indexing. See [Architecture](docs/ARCHITECTURE.md#portable-ontology-identity-versus-runtime-integer-indexing).
+
+## The broader classification tree
+
+The broadest Workshop classification position is intended to begin with frames such as **Reality**, **Fiction**, **Abstraction**, and **Utility**. Each can branch into its own domains and nested trees. The animal kingdom ontology and the ontology of things are sibling branches in that larger space. The exact organizing position immediately above those branches remains unresolved; the nine-position coordinate is the current model, not a reason to pretend every upper-level semantic question has already been answered. See the [nine-layer model](docs/NINE-LAYER-MODEL.md).
+
 ## Dependency direction
 
 - `TheSingularityWorkshop.Ontology` may depend on `TheSingularityWorkshop.MicroBundleDomain`.
