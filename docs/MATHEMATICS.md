@@ -245,6 +245,22 @@ $$
 
 These are two different parameterizations of the same product-space model. The bound must be stated whenever a cardinality is quoted.
 
+### Creator-scale multiplicity: many independent SuperDogs
+
+The same product-space reasoning applies even when the broad semantic classification is identical. Fix the first eight coordinates to the same values describing the same broad concept, such as the Workshop's SuperDog classification. If the terminal coordinate admits `int.MaxValue` distinct positive values, then that one fixed eight-coordinate prefix can still be extended into:
+
+$$
+N_8 = 2^{31}-1 = 2,147,483,647
+$$
+
+distinct nine-coordinate addresses.
+
+In other words, **up to `int.MaxValue` independently addressable SuperDog definitions can occupy the same broad classification without sharing the same complete address**. Each creator can author their own SuperDog entry, with its own identity, assets, behavior specializations, and provenance, while the shared first-eight-coordinate prefix expresses the common classification.
+
+This is a capacity statement, not an automatic distributed uniqueness guarantee. To make the no-conflict property real, the final coordinate (or another already-qualified identity component) must be allocated uniquely within its ontology/version namespace. A coordinated allocator, reserved creator-specific ranges, or a creator-qualified identity scheme can provide that uniqueness. Two disconnected creators who independently choose the same complete address can still collide; the mathematics provides enough distinct slots, while the identity/allocation contract governs who receives each slot.
+
+Creator identity and authorship provenance should remain explicit metadata/identity qualifiers. This example does **not** add a tenth ontology layer or redefine the meaning of the nine classification positions. It demonstrates that a fixed semantic classification can have a very large number of distinct, independently authored addresses.
+
 ### Why the exponent is nine
 
 The exponent is the number of independent coordinate positions in the canonical Workshop classification tuple. It is not the number of ontology relationships, the number of MicroBundle dependencies, or the depth of a runtime composition graph.
@@ -260,4 +276,3 @@ A portable semantic address (for example, an ontology-qualified path) is not the
 ### Sparse reality
 
 Even if the theoretical product space is enormous, only a small subset may be defined or materialized. A sparse ontology stores definitions, relationships, and artifacts that actually exist. The mathematical address space describes the set of possible coordinates; it does not prescribe dense allocation.
-
