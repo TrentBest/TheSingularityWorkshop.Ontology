@@ -150,6 +150,52 @@ A tenth classification position is not a substitute for a relationship, a second
 
 A nine-position semantic coordinate is also not a storage address or runtime handle. Portable identity and exact version are resolved through repository and runtime boundaries; blob indexes and runtime-local numeric handles remain implementation-specific.
 
+## Portable ontology identity versus runtime integer indexing
+
+The Workshop deliberately uses two address systems for two different jobs. The ontology's potentially enormous semantic address space is an **external reference space**. It gives concepts and MicroBundles portable identities that can be exchanged, stored, searched, and understood across Experiences and systems. It is not the representation that the runtime should repeatedly resolve on every hot-path operation.
+
+An Experience declares the MicroBundles that participate in it and their load sequence. Once the Experience's bundle set and dependencies have been resolved, the ordered set is assigned a compact local integer index mapping. FSM_COS uses those integers for runtime access and composition. The mapping retains the portable string ontology identity as the external key:
+
+```text
+portable ontology identity (string / qualified address)
+                  |
+                  v
+       MicroBundleRepository resolution
+                  |
+                  v
+       Experience's ordered bundle manifest
+                  |
+                  v
+       Experience-local integer index map
+                  |
+                  v
+       FSM_COS: integer-first runtime
+                  |
+                  v
+       external boundary: map index back
+                  |
+                  v
+       portable ontology identity
+```
+
+The load sequence is part of the Experience's mapping contract. Given the same resolved bundle set, exact versions, and ordering rules, preparation should produce a deterministic mapping. A different Experience—or a changed load sequence—may assign different local integers to the same portable bundle. That is expected: local indexes are scoped to the prepared Experience and must never be mistaken for global semantic identities.
+
+Consequently:
+
+- Persisted or exchanged references use portable ontology identity and exact version, not a bare Experience-local integer.
+- Runtime hot paths use the compact integer mapping, not repeated string parsing or ontology traversal.
+- Diagnostics and external integrations translate local indexes back through the Experience mapping.
+- The repository resolves portable identities to stored artifacts; its blob/storage indexes are not ontology identities and are not runtime indexes.
+- FSM_COS owns the local runtime mapping and integer-first composition; Ontology owns portable semantic definitions and addresses; Experience owns the selected bundle set and load sequence.
+
+This section records the intended ecosystem architecture. The Ontology package does not itself load Experiences, allocate FSM_COS runtime indexes, or execute MicroBundles.
+
+## The upper ontology remains an evolving model
+
+The Workshop's broadest classification position is intended to distinguish frames such as **Reality**, **Fiction**, **Abstraction**, and **Utility**. Each can branch into its own domains and nested semantic trees. The animal kingdom ontology and an ontology of things are examples of sibling branches in that larger space, not evidence that every subject must descend from biological taxonomy.
+
+The precise semantic position immediately above those branches is not yet settled. The nine-position coordinate remains the current canonical shape, but the upper-level interpretation should remain explicit about what is established and what is still under exploration. Do not invent a definition for an unresolved position merely to fill a diagram.
+
 ## N-dimensional indexing
 
 OntologyIndex is the compact semantic coordinate.
